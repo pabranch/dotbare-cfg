@@ -82,6 +82,7 @@
 	upp = remote update -p
 
 	force-push = push --force-with-lease
+	fp = force-push
 
 	discard = reset --hard HEAD^
 	hardreset = reset --hard

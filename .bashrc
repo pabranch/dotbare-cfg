@@ -11,11 +11,6 @@ esac
 # most important setting!
 set -o vi
 
-# super simple dotfile management
-source $HOME/.dotbare/dotbare.plugin.bash
-alias dotbare="$HOME"/.dotbare/dotbare
-alias dotbar=dotbare    # cuz typos
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -119,15 +114,26 @@ if ! shopt -oq posix; then
   fi
 fi
 
-### Mine
+### Customizations ###
+
+# bare git repo for dotfile management
+source ~/.dotbare/dotbare.plugin.bash
+alias dotbare="~/.dotbare/dotbare"
+alias dtbr=dotbare
+alias gfz='dotbare --git'
+
+# cuz typos
 alias g=git
 
 export LESS=-FiReX
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-export HOMEBREW_AUTO_UPDATE_SECS=3600
-
-export PODMAN_IGNORE_CGROUPSV1_WARNING=true
+if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]];
+then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  export HOMEBREW_AUTO_UPDATE_SECS=3600
+fi
 
 # Set up fzf key bindings and fuzzy completion
-eval "$(fzf --bash)"
+command -v fzf >/dev/null && eval "$(fzf --bash)"
+
+# vvvvv to be organized vvvvv
