@@ -126,7 +126,7 @@
 [pull]
 	ff = only
 [push]
-	default = upstream
+	default = current
 	autoSetupRemote = true
 [filter "lfs"]
 	clean = git-lfs clean -- %f
