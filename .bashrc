@@ -116,6 +116,10 @@ fi
 
 ### Customizations ###
 
+_is_command() {
+  command -v ${1} >/dev/null
+}
+
 # bare git repo for dotfile management
 source ~/.dotbare/dotbare.plugin.bash
 alias dotbare="~/.dotbare/dotbare"
@@ -134,6 +138,6 @@ then
 fi
 
 # Set up fzf key bindings and fuzzy completion
-command -v fzf >/dev/null && eval "$(fzf --bash)"
+_is_command fzf && eval "$(fzf --bash)"
 
 # vvvvv to be organized vvvvv
