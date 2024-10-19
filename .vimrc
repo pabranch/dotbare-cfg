@@ -26,6 +26,7 @@ nnoremap <leader>rrc :source $MYVIMRC<CR>
 
 " Automatically save when changing context
 set autowrite     " Automatically :write before running commands
+autocmd BufLeave,FocusLost * silent! wall  " :write when switching buffers or windows
 
 " Switch syntax highlighting on, when the terminal has colors
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
