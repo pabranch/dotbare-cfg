@@ -97,6 +97,7 @@
 	swap = checkout @{-1}
 	tags = tag -l
 	wt = worktree
+	wtl = worktree list
 [color]
 	ui = auto
 [column]
