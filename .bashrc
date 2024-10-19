@@ -140,4 +140,9 @@ fi
 # Set up fzf key bindings and fuzzy completion
 _is_command fzf && eval "$(fzf --bash)"
 
+# cd w/ memory
+_is_command zoxide && eval "$(zoxide init bash)"
+alias cd=z
+alias cdi=zi
+
 # vvvvv to be organized vvvvv
