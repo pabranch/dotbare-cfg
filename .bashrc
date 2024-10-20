@@ -8,9 +8,6 @@ case $- in
       *) return;;
 esac
 
-# most important setting!
-set -o vi
-
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -116,9 +113,10 @@ fi
 
 ### Customizations ###
 
-EDITOR=vim
-VISUAL=vim
-export EDITOR VISUAL
+# vim all the things
+set -o vi
+export EDITOR=vim
+export VISUAL=vim
 
 _is_command() {
   command -v ${1} >/dev/null
@@ -135,10 +133,11 @@ else
   alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
-# cuz typos
+# cuz typos/lazy
 alias g=git
 
 # quit-if-one-screen,ignore-case,RAW ctrl chars,quit-at-eof,no-init
+# https://explainshell.com/explain?cmd=less+-FiReX
 export LESS=-FiReX
 
 if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]];
