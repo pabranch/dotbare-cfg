@@ -151,9 +151,12 @@ fi
 _is_command fzf && eval "$(fzf --bash)"
 
 # cd w/ memory
-_is_command zoxide && eval "$(zoxide init bash)"
-alias cd=z
-alias cdi=zi
+if _is_command zoxide
+then
+  eval "$(zoxide init bash)"
+  alias cd=z
+  alias cdi=zi
+fi
 
 # vvvvv to be organized vvvvv
 
