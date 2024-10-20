@@ -124,15 +124,21 @@ _is_command() {
   command -v ${1} >/dev/null
 }
 
-# bare git repo for dotfile management
-source ~/.dotbare/dotbare.plugin.bash
-alias dotbare="~/.dotbare/dotbare"
-alias dtbr=dotbare
-alias gfz='dotbare --git'
+# bare git repo for dotfile management and fuzzy command args
+if [ -f ~/.dotbare/dotbare.plugin.bash ];
+then
+  source ~/.dotbare/dotbare.plugin.bash
+  alias dotbare="~/.dotbare/dotbare"
+  alias cfg=dotbare
+  alias gfz='dotbare --git'
+else
+  alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+fi
 
 # cuz typos
 alias g=git
 
+# quit-if-one-screen,ignore-case,RAW ctrl chars,quit-at-eof,no-init
 export LESS=-FiReX
 
 if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]];
