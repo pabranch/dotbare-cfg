@@ -134,7 +134,17 @@ else
 fi
 
 # cuz typos/lazy
-alias g=git
+g() {
+  if ( [[ "$@" != *"-C"* ]] &&
+    ! git rev-parse --git-dir >/dev/null 2>&1 &&
+    _is_command cfg )
+  then
+    echo "  -- not git repo; using cfg instead --" >&2
+    cfg "$@"
+  else
+    git "$@"
+  fi
+}
 
 # quit-if-one-screen,ignore-case,RAW ctrl chars,quit-at-eof,no-init
 # https://explainshell.com/explain?cmd=less+-FiReX
