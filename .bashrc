@@ -116,6 +116,10 @@ fi
 
 ### Customizations ###
 
+EDITOR=vim
+VISUAL=vim
+export EDITOR VISUAL
+
 _is_command() {
   command -v ${1} >/dev/null
 }
@@ -146,3 +150,7 @@ alias cd=z
 alias cdi=zi
 
 # vvvvv to be organized vvvvv
+
+alias lla='ls -Al'
+alias lal=lla
+
