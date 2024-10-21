@@ -2,7 +2,6 @@
 
 ## ASAP
 
-    - BASH git completion for `g` and `cfg` wrappers
     - INIT dedupe README and cfg script
 
 ## Soon
@@ -17,6 +16,7 @@
 
 ## Done!
 
+    - BASH git completion for `g` and `cfg` wrappers
     - VIM improve search highlighting
     - VIM make spacebar scroll like w/ `less`
 
