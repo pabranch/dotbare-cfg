@@ -48,6 +48,8 @@ set shiftround
 set expandtab
 
 " Display extra whitespace
+scriptencoding utf-8
+set encoding=utf-8
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Use one space, not two, after punctuation.
