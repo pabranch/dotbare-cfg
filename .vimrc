@@ -88,4 +88,7 @@ if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
 
-" vim:ft=vim
+" https://github.com/tomasiser/vim-code-dark?tab=readme-ov-file#installation
+colorscheme codedark
+
+ " vim:ft=vim

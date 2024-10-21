@@ -43,3 +43,14 @@ cfg status
 [ ] figure out what conflict letters make sense for each column
 
 ### Usage
+
+## Vim setup
+
+Install basic dark mode.
+```
+mkdir -p ~/.vim/pack/themes/start
+cd ~/.vim/pack/themes/start
+git clone https://github.com/tomasiser/vim-code-dark
+cd -
+```
+Should be enabled in `.vimrc` already. If not, add `colorscheme codedark` to use.
