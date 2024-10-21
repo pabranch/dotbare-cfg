@@ -91,4 +91,4 @@ endif
 " https://github.com/tomasiser/vim-code-dark?tab=readme-ov-file#installation
 colorscheme codedark
 
- " vim:ft=vim
+" vim:ft=vim
