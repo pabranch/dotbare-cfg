@@ -4,29 +4,54 @@ set nocompatible
 " Need to set the leader before defining any leader mappings
 let mapleader = ","
 
-" Force shell to /bin/bash to avoid E484 can't find tmp files in /var/folders/*
-set shell=/bin/bash
+" https://github.com/tomasiser/vim-code-dark?tab=readme-ov-file#installation
+colorscheme codedark
 
-set backspace=2   " Backspace deletes like most programs in insert mode
-set nobackup
-set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=500
+" Status etc
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set laststatus=2  " Always display the status line
+
+" Safety net
+set nobackup
+set nowritebackup
+set history=500
+
+" TODO: find out what this does
+set backspace=2   " Backspace deletes like most programs in insert mode
+
+" Quickly edit or reload this config file
+nnoremap <leader>erc :edit $MYVIMRC<CR>
+nnoremap <leader>rrc :source $MYVIMRC<CR>
+
+" Automatically save when changing context
 set autowrite     " Automatically :write before running commands
 
-" Search / Substitute related configurations
+" Switch syntax highlighting on, when the terminal has colors
+if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
+    syntax on
+endif
 set hlsearch
+" Turn off search highlight by pressing return
+nnoremap <silent> <CR> :noh<CR>
 set incsearch
 set ignorecase
 set smartcase
-nnoremap <leader>sub :%s///g<left><left>
-vnoremap <leader>sub :s///g<left><left>
 
-" Make it obvious where 120 characters is
-set textwidth=120
+" Center vertically when selecting search results
+" https://stackoverflow.com/questions/39892498/center-cursor-position-after-search-in-vim
+cnoremap <silent><expr> <enter> index(['/', '?'], getcmdtype()) >= 0 ? '<enter>zz' : '<enter>'
+nmap * *zz
+nmap # #zz
+nmap n nzz
+nmap N Nzz
+
+" replace text everywhere or in selection
+nnoremap <leader>sub :%s///g<left><left><left>
+vnoremap <leader>sub :s///g<left><left><left>
+
+" Highlight the preferred line length
+set textwidth=80
 set colorcolumn=+1
 
 " Numbers
@@ -34,12 +59,6 @@ set number
 set relativenumber
 
 filetype plugin indent on
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-    syntax on
-endif
 
 " Softtabs, 2 spaces
 set tabstop=2
@@ -90,7 +109,7 @@ if filereadable($HOME . "/.vimrc.local")
   source ~/.vimrc.local
 endif
 
-" https://github.com/tomasiser/vim-code-dark?tab=readme-ov-file#installation
-colorscheme codedark
+" Force shell to /bin/bash to avoid E484 can't find tmp files in /var/folders/*
+set shell=/bin/bash
 
 " vim:ft=vim
