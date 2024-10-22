@@ -133,13 +133,13 @@ else
   alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
-# cuz typos/lazy
+# cuz lazy/typos
 g() {
-  if ( [[ "$@" != *"-C"* ]] &&
+  if ( [[ "$@" != *"-C"* && "$@" != *" clone "* ]] &&
     ! git rev-parse --git-dir >/dev/null 2>&1 &&
     _is_command cfg )
   then
-    echo "  -- not git repo; using cfg instead --" >&2
+    [[ "$PWD" != "$HOME" ]] && echo "  -- not git repo; using cfg instead --" >&2
     cfg "$@"
   else
     git "$@"
@@ -153,7 +153,8 @@ export LESS=-FiReX
 if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]];
 then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  export HOMEBREW_AUTO_UPDATE_SECS=3600
+  # only update once every 24 hours
+  export HOMEBREW_AUTO_UPDATE_SECS=86400
 fi
 
 # Set up fzf key bindings and fuzzy completion
