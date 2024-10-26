@@ -8,7 +8,6 @@
 ## Soon
 
     - INIT Install `brew` apps
-    - TMUX plugin manager https://github.com/tmux-plugins/tpm#readme
     - VIM use vim-sensible?
       https://github.com/tpope/vim-sensible#readme
 
@@ -17,6 +16,7 @@
 
 ## Done!
 
+    - TMUX plugin manager https://github.com/tmux-plugins/tpm#readme
     - VIM improve search highlighting
     - VIM make spacebar scroll like w/ `less`
 
