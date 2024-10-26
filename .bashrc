@@ -155,6 +155,7 @@ then
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   # only update once every 24 hours
   export HOMEBREW_AUTO_UPDATE_SECS=86400
+  alias brewed='sort <(brew leaves; brew list --cask)'
 fi
 
 # Set up fzf key bindings and fuzzy completion
