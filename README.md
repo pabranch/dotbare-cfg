@@ -42,6 +42,22 @@ cfg status
 **TODO**
 [ ] figure out what conflict letters make sense for each column
 
+```
+# if you just want to use everything from the repo
+git restore .
+```
+
+## Homebrew
+
+Install [brew](https://brew.sh) for consistent tooling.
+
+```
+curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh \
+  -o install-brew.sh
+chmod +x install-brew.sh
+NONINTERACTIVE=1 ./install-brew.sh
+```
+
 ### Usage
 
 ## Vim setup
