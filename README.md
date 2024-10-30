@@ -55,6 +55,7 @@ Install [brew](https://brew.sh) for consistent tooling.
 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh \
   -o install-brew.sh
 chmod +x install-brew.sh
+sudo ls >/dev/null    # prime sudo for use in the install
 NONINTERACTIVE=1 ./install-brew.sh
 ```
 
