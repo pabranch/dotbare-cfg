@@ -7,12 +7,12 @@ shopt -s expand_aliases
 
 cd ~
 ### from README
-git init --bare $HOME/.cfg --initial-branch=$(hostname)
+git init --bare $HOME/.cfg --initial-branch=$(hostname | tr [:upper:] [:lower:])
 
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+echo "$(alias cfg)" >> $HOME/.bashrc
 
 cfg config --local status.showUntrackedFiles no
-echo "alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
 
 cfg remote add origin ssh://git@github.com/pabranch/dotbare-cfg
 cfg remote update

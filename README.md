@@ -12,11 +12,11 @@ Git repo.
 
 Create bare repo and setup `cfg` alias to manage it.
 ```
-git init --bare $HOME/.cfg --initial-branch=$(hostname)
+git init --bare $HOME/.cfg --initial-branch=$(hostname | tr [:upper:] [:lower:])
 
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+echo "$(alias cfg)" >> $HOME/.bashrc
 cfg config --local status.showUntrackedFiles no
-echo "alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'" >> $HOME/.bashrc
 ```
 
 ### Link to remote repo if desired
