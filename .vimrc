@@ -27,6 +27,11 @@ nnoremap <leader>rrc :source $MYVIMRC<CR>
 " Automatically save when changing context
 set autowrite     " Automatically :write before running commands
 
+" Use spacebar to page up and down
+nnoremap <Space> <PageDown>zz
+nnoremap <C-b> <PageUp>zz
+"nnoremap <Shift-Space> <PageUp>  " this requires remapping at OS level
+
 " Switch syntax highlighting on, when the terminal has colors
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
     syntax on

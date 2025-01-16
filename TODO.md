@@ -3,7 +3,6 @@
 ## ASAP
 
     - BASH git completion for `g` and `cfg` wrappers
-    - VIM make spacebar scroll like w/ `less`
     - INIT dedupe README and cfg script
 
 ## Soon
@@ -19,4 +18,5 @@
 ## Done!
 
     - VIM improve search highlighting
+    - VIM make spacebar scroll like w/ `less`
 
