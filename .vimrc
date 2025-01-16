@@ -45,7 +45,7 @@ set smartcase
 
 " Center vertically when selecting search results
 " https://stackoverflow.com/questions/39892498/center-cursor-position-after-search-in-vim
-cnoremap <silent><expr> <enter> index(['/', '?'], getcmdtype()) >= 0 ? '<enter>zz' : '<enter>'
+cnoremap <silent><expr> <Enter> index(['/', '?'], getcmdtype()) >= 0 ? '<Enter>zz' : '<Enter>'
 nmap * *zz
 nmap # #zz
 nmap n nzz
