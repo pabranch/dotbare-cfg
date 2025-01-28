@@ -23,3 +23,5 @@ mkdir -p ${HOME}/.cfg-backup &&
   xargs -I{} cp ${HOME}/{} ${HOME}/.cfg-backup/{}
 ls -Al .cfg-backup
 cfg status
+
+printf "\nUse 'cfg restore .' to reset the config files\n"

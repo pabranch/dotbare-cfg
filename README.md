@@ -44,7 +44,7 @@ cfg status
 
 ```
 # if you just want to use everything from the repo
-git restore .
+cfg restore .
 ```
 
 ## Homebrew
