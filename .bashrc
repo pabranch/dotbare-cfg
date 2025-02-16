@@ -169,6 +169,11 @@ then
   alias cdi=zi
 fi
 
+if _is_command bat
+then
+  alias cat='bat -p'
+fi
+
 # vvvvv to be organized vvvvv
 
 alias lla='ls -Al'
