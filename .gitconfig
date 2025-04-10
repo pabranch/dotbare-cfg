@@ -42,8 +42,8 @@
 	gcfg = config --global
 
 	df = diff -M -w
-	dfu = diff -M -w -R @{u}
-	dfw = diff -M -w --word-diff
+	dfu = df @{u}
+	dfw = df --word-diff
 	dfc = df --cached
 	dfcu = dfu --cached
 	dfcw = dfw --cached
