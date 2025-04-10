@@ -175,6 +175,11 @@ then
   alias cat='bat -p'
 fi
 
+if _is_command fastfetch
+then
+  alias about='fastfetch'
+fi
+
 # vvvvv to be organized vvvvv
 
 alias lal='ls -Al'
