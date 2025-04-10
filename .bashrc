@@ -151,9 +151,17 @@ g() {
 # https://explainshell.com/explain?cmd=less+-FiReX
 export LESS=-FiReX
 
-if [[ -f /home/linuxbrew/.linuxbrew/bin/brew ]];
+# setup brew if installed
+if _is_command brew
 then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  brew_prefix=$(brew --prefix)
+elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]
+then
+  brew_prefix='/home/linuxbrew/.linuxbrew'
+fi
+if [[ -n "$brew_prefix" ]];
+then
+  eval "$(${brew_prefix}/bin/brew shellenv)"
   # only update once every 24 hours
   export HOMEBREW_AUTO_UPDATE_SECS=86400
   alias brewed='sort <(brew leaves; brew list --cask)'
