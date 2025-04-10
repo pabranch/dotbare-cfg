@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+echo "=> $PWD/.bashrc"
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -187,6 +189,10 @@ if _is_command fastfetch
 then
   alias about='fastfetch'
 fi
+
+### Mac Stuff ###
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # vvvvv to be organized vvvvv
 
