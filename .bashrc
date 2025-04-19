@@ -188,6 +188,11 @@ then
   alias about='fastfetch'
 fi
 
+if [[ -r "$HOME/.bashrc.local" ]]
+then
+  source "$HOME/.bashrc.local";
+fi
+
 # vvvvv to be organized vvvvv
 
 alias lal='ls -Al'
