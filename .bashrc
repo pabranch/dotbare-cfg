@@ -188,6 +188,11 @@ then
   alias about='fastfetch'
 fi
 
+if _is_command mise
+then
+  eval "$(mise activate bash)"
+fi
+
 if [[ -r "$HOME/.bashrc.local" ]]
 then
   source "$HOME/.bashrc.local";
