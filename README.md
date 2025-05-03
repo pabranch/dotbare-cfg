@@ -11,7 +11,7 @@ Git repo.
 ## Initialize bare Git repo
 
 Create bare repo and setup `cfg` alias to manage it.
-```
+```bash
 git init --bare $HOME/.cfg --initial-branch=$(hostname | tr [:upper:] [:lower:])
 
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
@@ -23,7 +23,7 @@ cfg config --local status.showUntrackedFiles no
 
 Add this repo as the `origin` remote. Fetch latest and move the local branch to
 the `main` remote branch.
-```
+```bash
 cfg remote add origin ssh://git@github.com/pabranch/dotbare-cfg
 cfg remote update
 cfg reset origin/main
@@ -31,7 +31,7 @@ cfg reset origin/main
 
 ### Backup conflicting dotfiles as desired
 
-```
+```bash
 mkdir -p ${HOME}/.cfg-backup &&
   cfg status -s 2>&1 |
   awk '/^[ AMUD][ AMU]/{print $2}' |
@@ -42,7 +42,7 @@ cfg status
 **TODO**
 [ ] figure out what conflict letters make sense for each column
 
-```
+```bash
 # if you just want to use everything from the repo
 cfg restore .
 ```
@@ -51,7 +51,7 @@ cfg restore .
 
 Install [brew](https://brew.sh) for consistent tooling.
 
-```
+```bash
 curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh \
   -o install-brew.sh
 chmod +x install-brew.sh
@@ -64,7 +64,7 @@ NONINTERACTIVE=1 ./install-brew.sh
 ## Vim setup
 
 Install basic dark mode.
-```
+```bash
 mkdir -p ~/.vim/pack/themes/start
 cd ~/.vim/pack/themes/start
 git clone https://github.com/tomasiser/vim-code-dark
