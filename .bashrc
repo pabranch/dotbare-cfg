@@ -165,6 +165,7 @@ then
   # only update once every 24 hours
   export HOMEBREW_AUTO_UPDATE_SECS=86400
   alias brewed='sort <(brew leaves; brew list --cask)'
+  alias outdated='brew outdated'
 fi
 
 # Set up fzf key bindings and fuzzy completion
@@ -193,6 +194,7 @@ then
   eval "$(mise activate bash)"
 fi
 
+#  run last to override any previous aliases, variables, etc
 if [[ -r "$HOME/.bashrc.local" ]]
 then
   source "$HOME/.bashrc.local";
