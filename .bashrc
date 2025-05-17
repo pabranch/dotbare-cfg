@@ -131,7 +131,7 @@ then
   alias cfg=dotbare
   alias gfz='dotbare --git'
 else
-  alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+  alias cfg='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 fi
 
 # cuz lazy/typos
