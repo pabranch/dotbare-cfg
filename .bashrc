@@ -170,7 +170,21 @@ then
   # only update once every 24 hours
   export HOMEBREW_AUTO_UPDATE_SECS=86400
   alias brewed='sort <(brew leaves; brew list --cask)'
-  alias outdated='brew outdated'
+fi
+
+# Dynamically create 'outdated' alias for available package managers
+outdated_cmd=""
+if _is_command brew; then
+  outdated_cmd+='echo "-> brew ..."; brew update >/dev/null; brew outdated'
+fi
+if _is_command apt; then
+  [[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
+  outdated_cmd+='echo "-> apt ..."; sudo apt-get update >/dev/null; sudo apt list --upgradeable'
+fi
+if [[ -n "$outdated_cmd" ]]; then
+  alias outdated="$outdated_cmd"
+else
+  alias outdated='echo "No supported package manager found."'
 fi
 
 # Set up fzf key bindings and fuzzy completion
