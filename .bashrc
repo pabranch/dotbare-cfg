@@ -146,6 +146,11 @@ g() {
     git "$@"
   fi
 }
+# Enable git completion for g and cfg
+if type __git_complete &>/dev/null; then
+  __git_complete g git
+  __git_complete cfg git
+fi
 
 # quit-if-one-screen,ignore-case,RAW ctrl chars,quit-at-eof,no-init
 # https://explainshell.com/explain?cmd=less+-FiReX
