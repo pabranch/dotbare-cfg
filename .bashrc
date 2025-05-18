@@ -181,6 +181,14 @@ if _is_command apt; then
   [[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
   outdated_cmd+='echo "-> apt ..."; sudo apt-get update >/dev/null; sudo apt list --upgradeable'
 fi
+if _is_command scoop; then
+  [[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
+  outdated_cmd+='echo "-> scoop ..."; scoop update --all >/dev/null; scoop status'
+fi
+if _is_command winget; then
+  [[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
+  outdated_cmd+='echo "-> winget ..."; winget.exe source update >/dev/null; winget.exe upgrade --include-unknown'
+fi
 if [[ -n "$outdated_cmd" ]]; then
   alias outdated="$outdated_cmd"
 else
