@@ -120,7 +120,7 @@ export EDITOR=vim
 export VISUAL=vim
 
 _is_command() {
-  command -v ${1} >/dev/null
+  command -v "$1" >/dev/null
 }
 
 # bare git repo for dotfile management and fuzzy command args
@@ -203,7 +203,7 @@ fi
 # vvvvv to be organized vvvvv
 
 alias lal='ls -Al'
-alias lla='lal'
+alias lla='lal'  # duplicated for muscle memory/typo tolerance
 alias md='mkdir'
 alias rd='rmdir'
 alias cls='clear'
