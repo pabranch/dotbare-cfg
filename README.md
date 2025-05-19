@@ -17,6 +17,7 @@ Set-PSReadLineOption -EditMode Vi
 
 ## Notes
 
+- Use objective categories when creating directory structures. Things like date, source, or security requirments. Use tags and that sort of thing for subjective categorization.
 
 ```
 # must use 127.0.0.1 for Windows

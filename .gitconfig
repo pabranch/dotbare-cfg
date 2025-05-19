@@ -136,8 +136,8 @@
 [branch "master"]
 	remote = upstream
 	pushRemote = origin
+[init]
+	defaultBranch = main
 
 [include]
   path = ~/.config/git/delta.inc
-[init]
-	defaultBranch = main
