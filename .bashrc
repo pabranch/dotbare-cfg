@@ -169,13 +169,13 @@ then
   eval "$(${brew_prefix}/bin/brew shellenv)"
   # only update once every 24 hours
   export HOMEBREW_AUTO_UPDATE_SECS=86400
-  alias brewed='sort <(brew leaves; brew list --cask)'
 fi
 
 # Dynamically create 'outdated' alias for available package managers
 outdated_cmd=""
 if _is_command brew; then
   outdated_cmd+='echo "-> brew ..."; brew update >/dev/null; brew outdated'
+  alias brewed='sort <(brew leaves; brew list --cask)'
 fi
 if _is_command apt; then
   [[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
@@ -184,10 +184,12 @@ fi
 if _is_command scoop; then
   [[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
   outdated_cmd+='echo "-> scoop ..."; scoop update --all >/dev/null; scoop status'
+  alias scooped='scoop list | awk '\''NR>4&&NF{print $1}'\'''
 fi
 if _is_command winget; then
   [[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
   outdated_cmd+='echo "-> winget ..."; winget.exe source update >/dev/null; winget.exe upgrade --include-unknown'
+  alias wingot='winget.exe ls | grep "winget$"'
 fi
 if [[ -n "$outdated_cmd" ]]; then
   alias outdated="$outdated_cmd"
