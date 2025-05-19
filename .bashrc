@@ -223,6 +223,12 @@ then
   eval "$(mise activate bash)"
 fi
 
+# OS specific config
+OS="$(uname -o)"
+case $OS in
+  Msys) alias ls='ls --ignore={NTUSER.DAT,ntuser.dat}*' ;;
+esac
+
 #  run last to override any previous aliases, variables, etc
 if [[ -r "$HOME/.bashrc.local" ]]
 then
