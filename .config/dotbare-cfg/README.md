@@ -60,7 +60,7 @@ Create bare repo and setup `cfg` alias to manage it.
 ```bash
 git init --bare $HOME/.cfg --initial-branch=$(hostname | tr [:upper:] [:lower:])
 
-alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias cfg='git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 echo "$(alias cfg)" >> $HOME/.bashrc
 cfg config --local status.showUntrackedFiles no
 ```
