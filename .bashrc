@@ -242,4 +242,4 @@ alias lla='lal'  # duplicated for muscle memory/typo tolerance
 alias md='mkdir'
 alias rd='rmdir'
 alias cls='clear'
-alias all-brewed='sort -u <(cat .config/dotbare-cfg/all-brewed; brewed) | tee .config/dotbare-cfg/all-brewed'
+alias all-brewed='sort -u <(cat ~/.config/dotbare-cfg/all-brewed; brewed) | tee ~/.config/dotbare-cfg/all-brewed'
