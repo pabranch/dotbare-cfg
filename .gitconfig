@@ -1,8 +1,6 @@
 [user]
 	name = Perry Branch
 	email = perryb@mailinator.com
-[core]
-	excludesfile = /home/perry/.cvsignore
 
 ### GitHub
 
