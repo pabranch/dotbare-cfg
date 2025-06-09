@@ -223,6 +223,21 @@ then
   eval "$(mise activate bash)"
 fi
 
+if _is_command docker
+then
+  alias dkr=docker
+fi
+
+if _is_command podman
+then
+  alias pdm=podman
+  if ! _is_command docker
+  then
+    alias docker=podman
+    alias dkr=podman
+  fi
+fi
+
 # OS specific config
 OS="$(uname -o)"
 case $OS in
