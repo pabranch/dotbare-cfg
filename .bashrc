@@ -112,6 +112,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# explicitly load git completion since it is lazy loaded normally
+if [ -f /usr/share/bash-completion/completions/git ]; then
+    . /usr/share/bash-completion/completions/git
+elif [ -f /etc/bash-completion.d/git ]; then
+      . /etc/bash-completion.d/git
+fi
+
 ### Customizations ###
 
 # vim all the things
@@ -146,10 +153,11 @@ g() {
     git "$@"
   fi
 }
-# Enable git completion for g and cfg
+
+# enable git completion for g and cfg
 if type __git_complete &>/dev/null; then
-  __git_complete g git
-  __git_complete cfg git
+	__git_complete g __git_main
+	__git_complete cfg __git_main
 fi
 
 # quit-if-one-screen,ignore-case,RAW ctrl chars,quit-at-eof,no-init
