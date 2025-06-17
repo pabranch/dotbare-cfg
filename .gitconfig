@@ -104,10 +104,10 @@
 	autocrlf = input
 	safecrlf = warn
 	ignorecase = false
-#[credential]
-#	helper = osxkeychain
-#[init]
-#	defaultBranch = master
+[credential]
+	helper = manager
+[init]
+	defaultBranch = main
 [interactive]
 	singlekey = true
 [merge]
@@ -134,8 +134,6 @@
 [branch "master"]
 	remote = upstream
 	pushRemote = origin
-[init]
-	defaultBranch = main
 
 [include]
   path = ~/.config/git/delta.inc
