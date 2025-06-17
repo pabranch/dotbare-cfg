@@ -104,16 +104,14 @@
 	autocrlf = input
 	safecrlf = warn
 	ignorecase = false
-#[credential]
-#	helper = osxkeychain
+[credential]
+	helper = manager
 [credential "https://github.com"]
-	helper =
-	helper = !$HOME/.local/share/mise/installs/gh/latest/*/bin/gh auth git-credential
+	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
-	helper =
-	helper = !$HOME/.local/share/mise/installs/gh/latest/*/bin/gh auth git-credential
-#[init]
-#	defaultBranch = master
+	helper = !gh auth git-credential
+[init]
+	defaultBranch = main
 [interactive]
 	singlekey = true
 [merge]
@@ -140,8 +138,6 @@
 [branch "master"]
 	remote = upstream
 	pushRemote = origin
-[init]
-	defaultBranch = main
 
 [include]
   path = ~/.config/git/delta.inc
