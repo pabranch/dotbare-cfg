@@ -104,8 +104,12 @@
 	autocrlf = input
 	safecrlf = warn
 	ignorecase = false
-#[credential]
-#	helper = osxkeychain
+[credential]
+	helper = manager
+[credential "https://github.com"]
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !gh auth git-credential
 #[init]
 #	defaultBranch = master
 [interactive]
