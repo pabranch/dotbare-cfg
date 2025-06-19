@@ -226,7 +226,14 @@ then
   alias about='fastfetch'
 fi
 
-if _is_command mise
+# OS specific config
+OS="${OS:-$(uname -o)}"
+case $OS in
+  Msys) alias ls='ls --ignore={NTUSER.DAT,ntuser.dat}*' ;;
+esac
+
+# git-bash chokes on paths with mise activate
+if [[ ! $OS = "Msys" ]] && _is_command mise
 then
   eval "$(mise activate bash)"
 fi
@@ -245,12 +252,6 @@ then
     alias dkr=podman
   fi
 fi
-
-# OS specific config
-OS="$(uname -o)"
-case $OS in
-  Msys) alias ls='ls --ignore={NTUSER.DAT,ntuser.dat}*' ;;
-esac
 
 #  run last to override any previous aliases, variables, etc
 if [[ -r "$HOME/.bashrc.local" ]]
