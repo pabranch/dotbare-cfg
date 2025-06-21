@@ -141,10 +141,10 @@ fi
 
 # cuz lazy/typos
 g() {
-	if ([[ "$@" != *"-C"* && "$@" != *" clone "* ]] &&
+	if ([[ $@ != *"-C"* && $@ != *" clone "* ]] &&
 		! git rev-parse --git-dir >/dev/null 2>&1 &&
 		_is_command cfg); then
-		[[ "$PWD" != "$HOME" ]] && echo "  -- not git repo; using cfg instead --" >&2
+		[[ $PWD != "$HOME" ]] && echo "  -- not git repo; using cfg instead --" >&2
 		cfg "$@"
 	else
 		git "$@"
@@ -167,7 +167,7 @@ if _is_command brew; then
 elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
 	brew_prefix='/home/linuxbrew/.linuxbrew'
 fi
-if [[ -n "$brew_prefix" ]]; then
+if [[ -n $brew_prefix ]]; then
 	eval "$(${brew_prefix}/bin/brew shellenv)"
 	# only update once every 24 hours
 	export HOMEBREW_AUTO_UPDATE_SECS=86400
@@ -180,20 +180,20 @@ if _is_command brew; then
 	alias brewed='sort <(brew leaves; brew list --cask)'
 fi
 if _is_command apt; then
-	[[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
+	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
 	outdated_cmd+='echo "-> apt ..."; sudo apt-get update >/dev/null && sudo apt list --upgradeable'
 fi
 if _is_command scoop; then
-	[[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
+	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
 	outdated_cmd+='echo "-> scoop ..."; scoop update --all >/dev/null && scoop status'
 	alias scooped='scoop list | awk '\''NR>4&&NF{print $1}'\'''
 fi
 if _is_command winget; then
-	[[ -n "$outdated_cmd" ]] && outdated_cmd+='; '
+	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
 	outdated_cmd+='echo "-> winget ..."; winget.exe source update >/dev/null && winget.exe upgrade --include-unknown'
 	alias wingot='winget.exe ls | grep "winget$"'
 fi
-if [[ -n "$outdated_cmd" ]]; then
+if [[ -n $outdated_cmd ]]; then
 	alias outdated="$outdated_cmd"
 else
 	alias outdated='echo "No supported package manager found."'
@@ -224,7 +224,7 @@ Msys) alias ls='ls --ignore={NTUSER.DAT,ntuser.dat}*' ;;
 esac
 
 # git-bash chokes on paths with mise activate
-if [[ ! $OS = "Msys" ]] && _is_command mise; then
+if [[ ! $OS == "Msys" ]] && _is_command mise; then
 	eval "$(mise activate bash)"
 fi
 
