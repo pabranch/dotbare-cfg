@@ -168,7 +168,7 @@ elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
 	brew_prefix='/home/linuxbrew/.linuxbrew'
 fi
 if [[ -n $brew_prefix ]]; then
-	eval "$(${brew_prefix}/bin/brew shellenv)"
+	eval "$("${brew_prefix}"/bin/brew shellenv)"
 	# only update once every 24 hours
 	export HOMEBREW_AUTO_UPDATE_SECS=86400
 fi
