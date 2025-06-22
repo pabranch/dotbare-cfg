@@ -8,6 +8,25 @@ case $- in
 *) return ;;
 esac
 
+detect_platform() {
+	# if needed, default using uname
+	local platform="${OSTYPE:-$(uname -s)}"
+	# lowercase for simplicity
+	platform="${platform,,}"
+	case $platform in
+	msys* | mingw*) echo 'msys' ;;
+	cygwin*) echo 'cygwin' ;;
+	darwin*) echo 'macos' ;;
+	linux*) echo 'linux' ;;
+	*)
+		echo "${BASH_SOURCE}: Error - unknown platform '$platform'" >&2
+		return 1
+		;;
+	esac
+}
+
+platform=$(detect_platform) || exit 1
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
@@ -217,14 +236,8 @@ if _is_command fastfetch; then
 	alias about='fastfetch'
 fi
 
-# OS specific config
-OS="${OS:-$(uname -o)}"
-case $OS in
-Msys) alias ls='ls --ignore={NTUSER.DAT,ntuser.dat}*' ;;
-esac
-
 # git-bash chokes on paths with mise activate
-if [[ ! $OS == "Msys" ]] && _is_command mise; then
+if [[ $platform != "msys" ]] && _is_command mise; then
 	eval "$(mise activate bash)"
 fi
 
@@ -239,6 +252,8 @@ if _is_command podman; then
 		alias dkr=podman
 	fi
 fi
+
+alias ls='ls --ignore={NTUSER.DAT,ntuser.dat}*'
 
 #  run last to override any previous aliases, variables, etc
 if [[ -r "$HOME/.bashrc.local" ]]; then
