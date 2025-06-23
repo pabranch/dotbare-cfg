@@ -8,6 +8,11 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
+echo "--> ${BASH_SOURCE:-$0}"
+
+#PS4='+ ${BASH_SOURCE}:${LINENO}:${FUNCNAME[0]}() '; set -x
+#trap 'set +x' EXIT
+
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
 	# include .bashrc if it exists
