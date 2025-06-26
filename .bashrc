@@ -190,6 +190,8 @@ if [[ -n $brew_prefix ]]; then
 	eval "$("${brew_prefix}"/bin/brew shellenv)"
 	# only update once every 24 hours
 	export HOMEBREW_AUTO_UPDATE_SECS=86400
+	[[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] &&
+		. "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
 fi
 
 # Dynamically create 'outdated' alias for available package managers
