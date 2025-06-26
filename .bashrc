@@ -195,7 +195,7 @@ fi
 # Dynamically create 'outdated' alias for available package managers
 outdated_cmd=""
 if _is_command brew; then
-	outdated_cmd+='echo "-> brew ..."; brew update >/dev/null && brew outdated'
+	outdated_cmd+='echo "-> brew ..."; brew update-if-needed >/dev/null && brew outdated'
 	alias brewed='sort <(brew leaves; brew list --cask)'
 fi
 if _is_command apt; then
