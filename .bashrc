@@ -8,24 +8,8 @@ case $- in
 *) return ;;
 esac
 
-detect_platform() {
-	# if needed, default using uname
-	local platform="${OSTYPE:-$(uname -s)}"
-	# lowercase for simplicity
-	platform="${platform,,}"
-	case $platform in
-	msys* | mingw*) echo 'msys' ;;
-	cygwin*) echo 'cygwin' ;;
-	darwin*) echo 'macos' ;;
-	linux*) echo 'linux' ;;
-	*)
-		echo "${BASH_SOURCE}: Error - unknown platform '$platform'" >&2
-		return 1
-		;;
-	esac
-}
-
-platform=$(detect_platform) || exit 1
+[[ -r $HOME/.local/lib/runtime.sh ]] && source $HOME/.local/lib/runtime.sh
+platform=$(detect_platform)
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
