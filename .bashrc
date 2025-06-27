@@ -8,24 +8,10 @@ case $- in
 *) return ;;
 esac
 
-detect_platform() {
-	# if needed, default using uname
-	local platform="${OSTYPE:-$(uname -s)}"
-	# lowercase for simplicity
-	platform="${platform,,}"
-	case $platform in
-	msys* | mingw*) echo 'msys' ;;
-	cygwin*) echo 'cygwin' ;;
-	darwin*) echo 'macos' ;;
-	linux*) echo 'linux' ;;
-	*)
-		echo "${BASH_SOURCE}: Error - unknown platform '$platform'" >&2
-		return 1
-		;;
-	esac
-}
+# load our runtime utilities; eg detect_platform etc.
+[ -e $HOME/.local/lib/runtime.sh ] && source $HOME/.local/lib/runtime.sh
 
-platform=$(detect_platform) || exit 1
+platform=$(detect_platform)
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -144,10 +130,6 @@ set -o vi
 export EDITOR=vim
 export VISUAL=vim
 
-_is_command() {
-	command -v "$1" >/dev/null
-}
-
 # bare git repo for dotfile management and fuzzy command args
 if [ -f ~/.dotbare/dotbare.plugin.bash ]; then
 	source ~/.dotbare/dotbare.plugin.bash
@@ -190,45 +172,11 @@ if [[ -n $brew_prefix ]]; then
 	eval "$("${brew_prefix}"/bin/brew shellenv)"
 	# only update once every 24 hours
 	export HOMEBREW_AUTO_UPDATE_SECS=86400
-	[[ -r "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh" ]] &&
-		. "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
+	_source_if_exists "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
 fi
 
-# Dynamically create 'outdated' alias for available package managers
-outdated_cmd=""
-if _is_command brew; then
-	outdated_cmd+='echo "-> brew ..."; brew update-if-needed &>/dev/null && brew outdated'
-	alias brewed='sort <(brew leaves; brew list --cask)'
-	alias all-brewed='cat ~/.config/dotbare-cfg/all-brewed'
-	alias diff-brewed='diff <(brewed) <(all-brewed)'
-	alias update-all-brewed='tf=$(mktemp); sort -u <(all-brewed; brewed) >$tf; mv $tf ~/.config/dotbare-cfg/all-brewed; unset tf'
-fi
-if _is_command apt; then
-	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
-	outdated_cmd+='echo "-> apt ..."; sudo apt-get update &>/dev/null && sudo apt list --upgradeable'
-fi
-if _is_command scoop; then
-	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
-	outdated_cmd+='echo "-> scoop ..."; scoop update --all &>/dev/null && scoop status'
-	alias scooped='scoop list | awk '\''NR>4&&NF{print $1}'\'''
-	alias all-scooped='cat ~/.config/dotbare-cfg/all-scooped'
-	alias diff-scooped='diff <(scooped) <(all-scooped)'
-	alias update-all-scooped='tf=$(mktemp); sort -u <(all-scooped; scooped) >$tf; mv $tf ~/.config/dotbare-cfg/all-scooped; unset tf'
-fi
-if _is_command winget; then
-	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
-	outdated_cmd+='echo "-> winget ..."; winget.exe source update &>/dev/null && winget.exe upgrade --include-unknown'
-	alias wingot='winget.exe ls | grep "winget$"'
-	alias all-wingot='cat ~/.config/dotbare-cfg/all-wingot'
-	alias diff-wingot='diff <(wingot) <(all-wingot)'
-	alias update-all-wingot='tf=$(mktemp); sort -u <(all-wingot; wingot) >$tf; mv $tf ~/.config/dotbare-cfg/all-wingot; unset tf'
-fi
-if [[ -n $outdated_cmd ]]; then
-	alias outdated="$outdated_cmd"
-	unset outdated_cmd
-else
-	alias outdated='echo "No supported package manager found."'
-fi
+# Create `outdated` alias for any package managers
+_outdated
 
 # Set up fzf key bindings and fuzzy completion
 _is_command fzf && eval "$(fzf --bash)"
@@ -273,9 +221,7 @@ fi
 alias ls='ls -Fh --ignore={NTUSER.DAT,ntuser.dat}*'
 
 #  run last to override any previous aliases, variables, etc
-if [[ -r "$HOME/.bashrc.local" ]]; then
-	source "$HOME/.bashrc.local"
-fi
+_source_if_exists "$HOME/.bashrc.local"
 
 # vvvvv to be organized vvvvv
 
