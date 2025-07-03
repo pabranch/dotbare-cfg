@@ -24,3 +24,6 @@ done
 if command -v about >/dev/null 2>&1; then
 	about
 fi
+
+PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
