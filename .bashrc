@@ -161,7 +161,7 @@ fi
 # cuz lazy/typos
 g() {
 	if ([[ $@ != *"-C"* && $@ != *" clone "* ]] &&
-		! git rev-parse --git-dir >/dev/null 2>&1 &&
+		! git rev-parse --git-dir &>/dev/null &&
 		_is_command cfg); then
 		[[ $PWD != "$HOME" ]] && echo "  -- not git repo; using cfg instead --" >&2
 		cfg "$@"
@@ -197,21 +197,21 @@ fi
 # Dynamically create 'outdated' alias for available package managers
 outdated_cmd=""
 if _is_command brew; then
-	outdated_cmd+='echo "-> brew ..."; brew update-if-needed >/dev/null && brew outdated'
+	outdated_cmd+='echo "-> brew ..."; brew update-if-needed &>/dev/null && brew outdated'
 	alias brewed='sort <(brew leaves; brew list --cask)'
 fi
 if _is_command apt; then
 	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
-	outdated_cmd+='echo "-> apt ..."; sudo apt-get update >/dev/null && sudo apt list --upgradeable'
+	outdated_cmd+='echo "-> apt ..."; sudo apt-get update &>/dev/null && sudo apt list --upgradeable'
 fi
 if _is_command scoop; then
 	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
-	outdated_cmd+='echo "-> scoop ..."; scoop update --all >/dev/null && scoop status'
+	outdated_cmd+='echo "-> scoop ..."; scoop update --all &>/dev/null && scoop status'
 	alias scooped='scoop list | awk '\''NR>4&&NF{print $1}'\'''
 fi
 if _is_command winget; then
 	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
-	outdated_cmd+='echo "-> winget ..."; winget.exe source update >/dev/null && winget.exe upgrade --include-unknown'
+	outdated_cmd+='echo "-> winget ..."; winget.exe source update &>/dev/null && winget.exe upgrade --include-unknown'
 	alias wingot='winget.exe ls | grep "winget$"'
 fi
 if [[ -n $outdated_cmd ]]; then
