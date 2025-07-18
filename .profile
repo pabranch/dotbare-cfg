@@ -28,6 +28,4 @@ fi
 
 if command -v about >/dev/null 2>&1; then
 	about
-else
-	echo "--> command 'about' not found"
 fi
