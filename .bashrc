@@ -270,6 +270,5 @@ alias md='mkdir'
 alias rd='rmdir'
 alias cls='clear'
 alias all-brewed='cat ~/.config/dotbare-cfg/all-brewed'
-alias update-all-brewed='sort -u <(cat ~/.config/dotbare-cfg/all-brewed; brewed) | tee ~/.config/dotbare-cfg/all-brewed'
+alias update-all-brewed='tf=$(mktemp); sort -u <(all-brewed; brewed) >$tf; mv $tf ~/.config/dotbare-cfg/all-brewed; unset tf'
 alias shell='exec $SHELL'
-
