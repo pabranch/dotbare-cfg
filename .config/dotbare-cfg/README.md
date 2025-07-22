@@ -8,7 +8,7 @@ Consider using [dotbare](https://github.com/kazhala/dotbare#readme) cli for
 long-term environments. Provides more features and "fuzzy" commands for any
 Git repo.
 
-## Homebrew
+## Homebrew - Mac/Linux
 
 Install [brew](https://brew.sh) for consistent tooling.
 
@@ -19,6 +19,24 @@ chmod +x install-brew.sh
 sudo ls >/dev/null    # prime sudo for use in the install
 NONINTERACTIVE=1 ./install-brew.sh
 ```
+
+## Scoop - Git-Bash/Windows
+
+[Installation](https://github.com/ScoopInstaller/Scoop?tab=readme-ov-file#installation) must be run in PowerShell.
+
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+```
+
+Configure [multi-connection
+downloads](https://github.com/ScoopInstaller/Scoop?tab=readme-ov-file#multi-connection-downloads-with-aria2) using `aria2`
+
+```
+scoop install aria2
+```
+
+## Git setup
 
 Install improved diff for Git
 
