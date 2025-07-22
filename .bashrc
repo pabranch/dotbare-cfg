@@ -255,7 +255,7 @@ if _is_command podman; then
 	fi
 fi
 
-alias ls='ls --ignore={NTUSER.DAT,ntuser.dat}*'
+alias ls='ls -Fh --ignore={NTUSER.DAT,ntuser.dat}*'
 
 #  run last to override any previous aliases, variables, etc
 if [[ -r "$HOME/.bashrc.local" ]]; then
