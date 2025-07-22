@@ -50,7 +50,7 @@ _outdated() {
 	fi
 	if _is_command scoop; then
 		[[ -n $outdated_cmd ]] && outdated_cmd+='; '
-		outdated_cmd+='echo "-> scoop ..."; scoop update --all &>/dev/null && scoop status'
+		outdated_cmd+='echo "-> scoop ..."; scoop update &>/dev/null && scoop status -l'
 		alias scooped='scoop list | awk '\''NR>4&&NF{print $1}'\'''
 		alias all-scooped='cat ~/.config/dotbare-cfg/all-scooped'
 		alias diff-scooped='diff <(scooped) <(all-scooped)'
