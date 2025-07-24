@@ -246,6 +246,11 @@ if [[ $platform != "msys" ]] && _is_command mise; then
 	eval "$(mise activate bash)"
 fi
 
+if _is_command tmux; then
+	# TODO use a function instead so not specifying a session name works
+	alias tma='tmux new -A -t'
+fi
+
 if _is_command docker; then
 	alias dkr=docker
 fi
