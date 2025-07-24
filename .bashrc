@@ -273,3 +273,5 @@ alias md='mkdir'
 alias rd='rmdir'
 alias cls='clear'
 alias shell='exec $SHELL'
+alias v=vim
+alias c=cat
