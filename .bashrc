@@ -199,6 +199,9 @@ outdated_cmd=""
 if _is_command brew; then
 	outdated_cmd+='echo "-> brew ..."; brew update-if-needed &>/dev/null && brew outdated'
 	alias brewed='sort <(brew leaves; brew list --cask)'
+	alias all-brewed='cat ~/.config/dotbare-cfg/all-brewed'
+	alias diff-brewed='diff <(brewed) <(all-brewed)'
+	alias update-all-brewed='tf=$(mktemp); sort -u <(all-brewed; brewed) >$tf; mv $tf ~/.config/dotbare-cfg/all-brewed; unset tf'
 fi
 if _is_command apt; then
 	[[ -n $outdated_cmd ]] && outdated_cmd+='; '
@@ -269,6 +272,4 @@ alias lla='lal' # duplicated for muscle memory/typo tolerance
 alias md='mkdir'
 alias rd='rmdir'
 alias cls='clear'
-alias all-brewed='cat ~/.config/dotbare-cfg/all-brewed'
-alias update-all-brewed='tf=$(mktemp); sort -u <(all-brewed; brewed) >$tf; mv $tf ~/.config/dotbare-cfg/all-brewed; unset tf'
 alias shell='exec $SHELL'
