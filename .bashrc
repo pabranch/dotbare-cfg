@@ -219,6 +219,7 @@ if _is_command winget; then
 fi
 if [[ -n $outdated_cmd ]]; then
 	alias outdated="$outdated_cmd"
+	unset outdated_cmd
 else
 	alias outdated='echo "No supported package manager found."'
 fi
