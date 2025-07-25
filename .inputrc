@@ -3,8 +3,9 @@ set editing-mode vi
 set keymap vi
 set vi-cmd-mode-string "\1\e[2 q\2"    # Block cursor in command mode
 set vi-ins-mode-string "\1\e[6 q\2"    # Bar cursor in insert mode
+#set show-mode-in-prompt on
 
 # Tab completion settings
 set completion-ignore-case on
-set show-all-if-ambiguous on
+#set show-all-if-ambiguous on   # this gets annoying if I know what I want next
 set show-all-if-unmodified on
