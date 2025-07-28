@@ -2,6 +2,34 @@
 # library - source only
 # portable shell runtime helpers
 
+# Cross-platform realpath fallback
+realpath_fallback() {
+	local target="$1"
+	local dir file
+	target="${target%/}"
+
+	if [ -d "$target" ]; then
+		(cd "$target" 2>/dev/null && pwd -P)
+		return
+	fi
+
+	dir=$(dirname -- "$target")
+	file=$(basename -- "$target")
+	(cd "$dir" 2>/dev/null && echo "$(pwd -P)/$file")
+}
+
+# Robust script directory resolution
+get_script_path() {
+	local source="${BASH_SOURCE[1]}"
+	while [ -L "$source" ]; do
+		local dir
+		dir=$(cd -P "$(dirname "$source")" >/dev/null 2>&1 && pwd)
+		source="$(readlink "$source")"
+		[[ $source != /* ]] && source="$dir/$source"
+	done
+	realpath_fallback "$source"
+}
+
 # Platform detection (returns one of: linux, macos, msys, cygwin)
 detect_platform() {
 	local platform="${OSTYPE:-$(uname -s)}"
