@@ -203,8 +203,10 @@ if [[ $platform != "msys" ]] && _is_command mise; then
 fi
 
 if _is_command tmux; then
-	# TODO use a function instead so not specifying a session name works
-	alias tma='tmux new -A -t'
+  tma() {
+    session=${1:-main}
+    tmux new -A -t $session
+  }
 fi
 
 if _is_command docker; then
