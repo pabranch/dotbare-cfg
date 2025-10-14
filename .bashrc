@@ -197,6 +197,10 @@ if _is_command fastfetch; then
 	alias about='fastfetch'
 fi
 
+if _is_command yazi; then
+	alias yz='yazi'
+fi
+
 # git-bash chokes on paths with mise activate
 if [[ $platform != "msys" ]] && _is_command mise; then
 	eval "$(mise activate bash)"
