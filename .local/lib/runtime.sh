@@ -50,7 +50,7 @@ _outdated() {
 	fi
 	if _is_command scoop; then
 		[[ -n $outdated_cmd ]] && outdated_cmd+='; '
-		outdated_cmd+='echo "-> scoop ..."; scoop update --all &>/dev/null && scoop status'
+		outdated_cmd+='echo "-> scoop ..."; scoop update &>/dev/null && scoop status -l'
 		alias scooped='scoop list | awk '\''NR>4&&NF{print $1}'\'''
 		alias all-scooped='cat ~/.config/dotbare-cfg/all-scooped'
 		alias diff-scooped='diff <(scooped) <(all-scooped)'
@@ -59,7 +59,7 @@ _outdated() {
 	if _is_command winget; then
 		[[ -n $outdated_cmd ]] && outdated_cmd+='; '
 		outdated_cmd+='echo "-> winget ..."; winget.exe source update &>/dev/null && winget.exe upgrade --include-unknown'
-		alias wingot='winget.exe ls | grep "winget$"'
+		alias wingot='winget.exe ls | grep "winget$" | cut -c43-102 | sed "s/[[:space:]]*$//" | LC_ALL="C" sort -u'
 		alias all-wingot='cat ~/.config/dotbare-cfg/all-wingot'
 		alias diff-wingot='diff <(wingot) <(all-wingot)'
 		alias update-all-wingot='tf=$(mktemp); sort -u <(all-wingot; wingot) >$tf; mv $tf ~/.config/dotbare-cfg/all-wingot; unset tf'
