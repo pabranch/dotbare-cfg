@@ -243,4 +243,4 @@ alias c=cat
 alias sudop='sudo env PATH=$PATH'
 alias guplgst='g upp;g lga -10;g st'
 alias expand-path='printf "%b" "${PATH//:/\\n}"'
-alias dedup-path='echo $PATH | awk -F: '\''{for (i=1;i<=NF;i++) if (! s[$i]++) print $i}'\'' | paste -sd :'
+alias dedup-path='expand-path | awk '\''! s[$0]++{print}'\'' | paste -sd:'
