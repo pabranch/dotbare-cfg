@@ -38,7 +38,7 @@ _outdated() {
 	if _is_command brew; then
 		outdated_cmd+='echo "-> brew ..."; brew update-if-needed &>/dev/null \
       && brew outdated'
-		alias brewed='sort <(brew leaves; brew list --cask)'
+		alias brewed='sort <(brew list --installed-on-request; brew list --cask)'
 		alias all-brewed='cat ~/.config/dotbare-cfg/all-brewed'
 		alias diff-brewed='diff <(brewed) <(all-brewed)'
 		alias update-all-brewed='tf=$(mktemp); sort -u <(all-brewed; brewed) >$tf; \

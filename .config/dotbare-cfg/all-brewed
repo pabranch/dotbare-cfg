@@ -6,16 +6,18 @@ bat
 btop
 calcurse
 cheat
+cryptography
+curl
 editorconfig
 fastfetch
 fd
-fff
 fx
 fzf
 git
 git-delta
 glances
 glow
+gnupg
 htop
 iftop
 jq
@@ -24,6 +26,7 @@ mise
 nethogs
 openssh
 pandoc
+pastel
 podman
 podman-compose
 podman-tui
@@ -36,5 +39,7 @@ tlrc
 tmux
 tree
 vim
+wtfutil
+yazi
 yq
 zoxide
