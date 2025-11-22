@@ -240,3 +240,5 @@ alias cls='clear'
 alias shell='exec $SHELL'
 alias v=vim
 alias c=cat
+alias sudop='sudo env PATH=$PATH'
+alias guplgst='g upp;g lga -10;g st'
