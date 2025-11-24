@@ -106,6 +106,12 @@
 	ignorecase = false
 #[credential]
 #	helper = osxkeychain
+[credential "https://github.com"]
+	helper =
+	helper = !$HOME/.local/share/mise/installs/gh/latest/*/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !$HOME/.local/share/mise/installs/gh/latest/*/bin/gh auth git-credential
 #[init]
 #	defaultBranch = master
 [interactive]
