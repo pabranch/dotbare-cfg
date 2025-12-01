@@ -110,8 +110,8 @@
 	helper = !gh auth git-credential
 [credential "https://gist.github.com"]
 	helper = !gh auth git-credential
-#[init]
-#	defaultBranch = master
+[init]
+	defaultBranch = main
 [interactive]
 	singlekey = true
 [merge]
@@ -138,8 +138,6 @@
 [branch "master"]
 	remote = upstream
 	pushRemote = origin
-[init]
-	defaultBranch = main
 
 [include]
   path = ~/.config/git/delta.inc
