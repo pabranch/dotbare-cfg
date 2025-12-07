@@ -257,3 +257,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias fk='sudo $(fc -lnr -1)'
 alias plz='sudo $(fc -lnr -1)' # depending on mood ;-)
+alias cld='claude'
+alias cldc='claude --continue'
+alias cldr='claude --resume'
