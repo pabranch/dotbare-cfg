@@ -194,7 +194,7 @@ if _is_command bat; then
 fi
 
 if _is_command fastfetch; then
-	alias about='fastfetch'
+	alias about='clear;echo;fastfetch;echo'
 fi
 
 if _is_command yazi; then
