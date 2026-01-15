@@ -227,6 +227,10 @@ fi
 
 alias ls='ls -Fh --ignore={NTUSER.DAT,ntuser.dat}*'
 
+if _is_command wslpath; then
+  _source_if_exists "$HOME/.local/lib/wsl.sh"
+fi
+
 #  run last to override any previous aliases, variables, etc
 _source_if_exists "$HOME/.bashrc.local"
 

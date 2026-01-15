@@ -1,0 +1,20 @@
+# https://learn.microsoft.com/en-us/windows/wsl/wsl-config
+
+[automount]
+options=metadata  # Attach linux permissions to Windows files
+
+[boot]
+systemd=true
+command="mount --make-rshared /"
+
+[interop]
+# Run Windows .exe commands directly; no cluttered path
+enabled=true
+appendWindowsPath=false
+
+[network]
+#generateResolvConf=false  # uncomment if managing DNS locally
+hostname=victorp
+
+[user]
+default=perryb
