@@ -8,6 +8,7 @@
     ;line-numbers = true
     navigate = true # use n & N to move between sections
     syntax-theme = zenburn
+    keep-plus-minus-markers = true
 
 [merge]
     conflictstyle = diff3
