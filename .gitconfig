@@ -22,6 +22,7 @@
 	squash = !sh -c 'git commit --squash=$1' -
 	squashall = !sh -c 'git reset --hard @{u} && git merge --squash @{1} && git commit ' -
 
+	au = add -u
 	bi = bisect
 	br = branch
 	co = checkout
