@@ -247,7 +247,8 @@ alias c=cat
 alias sudop='sudo env PATH=$PATH'
 alias guplgst='g upp;g lga -10;g st'
 alias expand-path='printf "%b" "${PATH//:/\\n}"'
-alias dedup-path='expand-path | awk '\''! s[$0]++{print}'\'' | paste -sd:'
+alias dedupe-path='expand-path | awk '\''! s[$0]++{print}'\'' | paste -sd:'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias fk='sudo $(fc -lnr -1)'
+alias plz='sudo $(fc -lnr -1)' # depending on mood ;-)
