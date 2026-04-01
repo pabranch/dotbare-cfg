@@ -182,6 +182,11 @@ _outdated
 # Set up fzf key bindings and fuzzy completion
 _is_command fzf && eval "$(fzf --bash)"
 
+# prompt config - must come before zoxide
+if _is_command starship; then
+  eval -- "$(/home/linuxbrew/.linuxbrew/bin/starship init bash --print-full-init)"
+fi
+
 # cd w/ memory
 if _is_command zoxide; then
 	eval "$(zoxide init bash)"
