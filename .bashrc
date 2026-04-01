@@ -173,7 +173,7 @@ if [[ -n $brew_prefix ]]; then
 	eval "$("${brew_prefix}"/bin/brew shellenv)"
 	# only update once every 24 hours
 	export HOMEBREW_AUTO_UPDATE_SECS=86400
-	_source_if_exists "/home/linuxbrew/.linuxbrew/etc/profile.d/bash_completion.sh"
+	_source_if_exists "$brew_prefix/etc/profile.d/bash_completion.sh"
 fi
 
 # Create `outdated` alias for any package managers
@@ -181,6 +181,11 @@ _outdated
 
 # Set up fzf key bindings and fuzzy completion
 _is_command fzf && eval "$(fzf --bash)"
+
+# prompt config - must come before zoxide
+if _is_command starship; then
+  eval -- "$($brew_prefix/bin/starship init bash --print-full-init)"
+fi
 
 # cd w/ memory
 if _is_command zoxide; then
