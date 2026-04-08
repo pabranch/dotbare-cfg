@@ -231,6 +231,10 @@ if _is_command wslpath; then
   _source_if_exists "$HOME/.local/lib/wsl.sh"
 fi
 
+if _is_command wt; then
+  eval "$(command wt config shell init bash)";
+fi
+
 #  run last to override any previous aliases, variables, etc
 _source_if_exists "$HOME/.bashrc.local"
 
