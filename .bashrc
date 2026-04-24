@@ -13,6 +13,9 @@ esac
 
 platform=$(detect_platform)
 
+# run any platform specific initialization
+[ -e $HOME/.local/lib/init-$platform.sh ] && source $HOME/.local/lib/init-$platform.sh
+
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
 HISTCONTROL=ignoreboth
