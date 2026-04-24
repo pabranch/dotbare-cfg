@@ -24,3 +24,5 @@ done
 if command -v about >/dev/null 2>&1; then
 	about
 fi
+
+export DISPLAY="$(/sbin/ip route | awk '/default/ { print $3 }'):0"
