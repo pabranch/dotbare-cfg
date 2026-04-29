@@ -6,11 +6,13 @@ bat
 btop
 calcurse
 cheat
+coreutils
 cryptography
 curl
 editorconfig
 fastfetch
 fd
+findutils
 fx
 fzf
 git
@@ -21,6 +23,8 @@ gnupg
 htop
 iftop
 jq
+lazydocker
+lazygit
 lazyjournal
 mise
 nethogs
@@ -35,10 +39,12 @@ ripgrep
 rsync
 shellcheck
 shfmt
+starship
 tlrc
 tmux
 tree
 vim
+worktrunk
 wtfutil
 yazi
 yq
