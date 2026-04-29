@@ -230,7 +230,9 @@ if _is_command podman; then
 	fi
 fi
 
-alias ls='ls -Fh --ignore={NTUSER.DAT,ntuser.dat}*'
+if [[ $platform != "macos" ]]; then
+	alias ls='ls -Fh --ignore={NTUSER.DAT,ntuser.dat}*'
+fi
 
 if _is_command wslpath; then
   _source_if_exists "$HOME/.local/lib/wsl.sh"
