@@ -8,7 +8,9 @@ The [initial setup](#initial-setup) is found a the bottom of these instructions.
 
 ## Style guidelines
 
-- Use objective categories when creating directory structures. Things like date, source, or security requirments. Use tags and that sort of thing for subjective categorization.
+- Use objective categories when creating directory structures. Things like date,
+  source, or security requirments. Use tags and that sort of thing for
+  subjective categorization.
 
 ### Git
 
