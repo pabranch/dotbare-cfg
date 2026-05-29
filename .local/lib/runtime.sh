@@ -71,3 +71,13 @@ _outdated() {
 		return 1
 	fi
 }
+
+# Ensure that the specified file matches the sha256 checksum
+chksum() {
+	f=${1:?file required}
+	sha=${2:?sha required}
+	diff <(sha256sum $f | awk '{print $1}') <(echo $sha) && echo "checksum matched" || (
+		echo "checksum FAILED" >&2
+		exit 1
+	)
+}
