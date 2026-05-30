@@ -214,7 +214,7 @@ fi
 if _is_command tmux; then
   tma() {
     session=${1:-main}
-    tmux new -A -t $session
+    tmux new -A -s $session
   }
 fi
 
