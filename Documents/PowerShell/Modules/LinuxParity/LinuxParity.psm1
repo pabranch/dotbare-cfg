@@ -89,7 +89,16 @@ function Dedupe-Path {
     .SYNOPSIS
         Return a deduplicated PATH string without modifying $env:PATH.
     #>
-    ($env:PATH -split ';' | Select-Object -Unique) -join ';'
+    $seen = [System.Collections.Generic.HashSet[string]]::new([System.StringComparer]::InvariantCultureIgnoreCase)
+    $result = New-Object System.Collections.Generic.List[string]
+    foreach ($p in ($env:PATH -split ';')) {
+        $trimmed = $p.Trim()
+        if ($trimmed -eq '') { continue }
+        $norm = $trimmed.TrimEnd([char]92, [char]47)
+        if ($seen.Add($norm)) { $result.Add($norm) }
+    }
+    $result -join ';'
 }
+
 
 Export-ModuleMember -Function Which, Shell, Expand-Path, Dedupe-Path
