@@ -1,6 +1,9 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
+#
+# shellcheck shell=bash
+# shellcheck disable=SC1090
 
 # If not running interactively, don't do anything
 case $- in
@@ -9,9 +12,12 @@ case $- in
 esac
 
 # load our runtime utilities; eg detect_platform etc.
-[ -e $HOME/.local/lib/runtime.sh ] && source $HOME/.local/lib/runtime.sh
+[ -e "$HOME/.local/lib/runtime.sh" ] && source "$HOME/.local/lib/runtime.sh"
 
 platform=$(detect_platform)
+
+# run any platform specific initialization
+[ -e "$HOME/.local/lib/init-$platform.sh" ] && source "$HOME/.local/lib/init-$platform.sh"
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
@@ -111,8 +117,10 @@ fi
 # sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
 	if [ -f /usr/share/bash-completion/bash_completion ]; then
+		# shellcheck disable=SC1091
 		. /usr/share/bash-completion/bash_completion
 	elif [ -f /etc/bash_completion ]; then
+		# shellcheck disable=SC1091
 		. /etc/bash_completion
 	fi
 fi
@@ -143,7 +151,7 @@ fi
 
 # cuz lazy/typos
 g() {
-	if ([[ $@ != *"-C"* && $@ != *" clone "* ]] &&
+	if ([[ $* != *"-C"* && $* != *" clone "* ]] &&
 		! git rev-parse --git-dir &>/dev/null &&
 		_is_command cfg); then
 		[[ $PWD != "$HOME" ]] && echo "  -- not git repo; using cfg instead --" >&2
@@ -177,6 +185,7 @@ if [[ -n $brew_prefix ]]; then
 fi
 
 # Create `outdated` alias for any package managers
+# shellcheck disable=SC2119
 _outdated
 
 # Set up fzf key bindings and fuzzy completion
@@ -184,7 +193,7 @@ _is_command fzf && eval "$(fzf --bash)"
 
 # prompt config - must come before zoxide
 if _is_command starship; then
-  eval -- "$($brew_prefix/bin/starship init bash --print-full-init)"
+  eval -- "$("$brew_prefix"/bin/starship init bash --print-full-init)"
 fi
 
 # cd w/ memory
@@ -214,7 +223,7 @@ fi
 if _is_command tmux; then
   tma() {
     session=${1:-main}
-    tmux new -A -s $session
+    tmux new -A -s "$session"
   }
 fi
 
@@ -252,6 +261,7 @@ alias c=cat
 alias sudop='sudo env PATH=$PATH'
 alias guplgst='g upp;g lga -10;g st'
 alias expand-path='printf "%b" "${PATH//:/\\n}"'
+# shellcheck disable=SC2142
 alias dedupe-path='expand-path | awk '\''! s[$0]++{print}'\'' | paste -sd:'
 alias ..='cd ..'
 alias ...='cd ../..'
