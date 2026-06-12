@@ -13,13 +13,6 @@ if ([Console]::OutputEncoding.CodePage -ne 65001) { chcp 65001 > $null }
 [Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
 $OutputEncoding = [Console]::OutputEncoding
 
-function Upgrade-Apps-Elevated {
-      gsudo powershell -NoLogo -NoProfile -ExecutionPolicy Bypass -File "C:\Path\To\Upgrade-Apps.ps1"
-}
-
-Set-Alias upgrade-elevated Upgrade-Apps-Elevated
-
-. "$HOME\Documents\PowerShell\Scripts\linux-parity.ps1"
 . "$HOME\Documents\PowerShell\Scripts\Set-WindowsTheme.ps1"
 
 # vvvvvv to organize/cleanup vvvvvv
