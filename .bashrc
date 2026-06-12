@@ -193,7 +193,7 @@ _is_command fzf && eval "$(fzf --bash)"
 
 # prompt config - must come before zoxide
 if _is_command starship; then
-  eval -- "$("$brew_prefix"/bin/starship init bash --print-full-init)"
+	eval -- "$("$brew_prefix"/bin/starship init bash --print-full-init)"
 fi
 
 # cd w/ memory
@@ -221,10 +221,10 @@ if [[ $platform != "msys" ]] && _is_command mise; then
 fi
 
 if _is_command tmux; then
-  tma() {
-    session=${1:-main}
-    tmux new -A -s "$session"
-  }
+	tma() {
+		session=${1:-main}
+		tmux new -A -s "$session"
+	}
 fi
 
 if _is_command docker; then
@@ -242,7 +242,7 @@ fi
 alias ls='ls -Fh --ignore={NTUSER.DAT,ntuser.dat}*'
 
 if _is_command wslpath; then
-  _source_if_exists "$HOME/.local/lib/wsl.sh"
+	_source_if_exists "$HOME/.local/lib/wsl.sh"
 fi
 
 #  run last to override any previous aliases, variables, etc
