@@ -20,7 +20,7 @@
 # C:\Users\perry\bin\git.cmd
 # C:\Program Files\Git\cmd\git.exe
 
-function which {
+function Which {
     param (
         [Parameter(Position = 0)]
         [string]$Command,
@@ -30,7 +30,7 @@ function which {
     )
 
     if (-not $Command) {
-        Write-Output "Usage: which [-a] <command>"
+        Write-Output "Usage: Which [-a] <command>"
         return
     }
 
@@ -58,7 +58,7 @@ function which {
     }
 }
 
-function shell {
+function Shell {
     param (
         [switch]$Login
     )
@@ -72,3 +72,24 @@ function shell {
         . $PROFILE
     }
 }
+
+# Minimal, Bash-like PATH utilities for PowerShell
+# No aliases, no automatic PATH modification.
+
+function Expand-Path {
+    <#
+    .SYNOPSIS
+        Split $env:PATH into one entry per line.
+    #>
+    $env:PATH -split ';'
+}
+
+function Dedupe-Path {
+    <#
+    .SYNOPSIS
+        Return a deduplicated PATH string without modifying $env:PATH.
+    #>
+    ($env:PATH -split ';' | Select-Object -Unique) -join ';'
+}
+
+Export-ModuleMember -Function Which, Shell, Expand-Path, Dedupe-Path
