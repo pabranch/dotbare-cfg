@@ -39,3 +39,6 @@ if (Test-Path -LiteralPath $__it_si) { . $__it_si }
 Remove-Variable __it_si -ErrorAction SilentlyContinue
 # <<< intelligent-terminal shell-integration <<<
 
+# Set LESS for pager compatibility
+$env:LESS = 'FiReX'
+$env:PAGER = 'less -R'
