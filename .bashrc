@@ -193,7 +193,7 @@ _is_command fzf && eval "$(fzf --bash)"
 
 # prompt config - must come before zoxide
 if _is_command starship; then
-	eval -- "$("$brew_prefix"/bin/starship init bash --print-full-init)"
+	eval -- "$(starship init bash --print-full-init)"
 fi
 
 if _is_command bat; then
