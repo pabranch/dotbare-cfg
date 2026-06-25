@@ -4,6 +4,10 @@
 
 # Platform detection (returns one of: linux, macos, msys, cygwin)
 detect_platform() {
+	if (( BASH_VERSINFO[0] < 4 )); then
+		echo "Error: Bash version 4 or higher is required." >&2
+		return 1
+	fi
 	local platform="${OSTYPE:-$(uname -s)}"
 	# normalize to all lowercase
 	platform="${platform,,}"
@@ -23,7 +27,7 @@ detect_platform() {
 # should fail if it is not a file or readable!
 _source_if_exists() {
 	local filename=${1?no filename specified}
-	[ -e $filename ] && . $filename
+	[ -e "$filename" ] && . "$filename"
 }
 
 # check if command exists

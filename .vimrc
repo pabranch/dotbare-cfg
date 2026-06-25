@@ -17,8 +17,7 @@ set nobackup
 set nowritebackup
 set history=500
 
-" TODO: find out what this does
-set backspace=2   " Backspace deletes like most programs in insert mode
+set backspace=indent,eol,start
 
 " Quickly edit or reload this config file
 nnoremap <leader>erc :edit $MYVIMRC<CR>
