@@ -12,6 +12,10 @@
 
 ## Someday
 
+    - CLI prompt, look and feel, prioritize differentiating "where you are" (e.g. linux, windows, mac os, local vs remote)
+    - Font
+    - PowerShell
+
 
 ## Done!
 

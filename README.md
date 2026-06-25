@@ -26,20 +26,17 @@ Commit Prefix Reference for my DOTFILES
 
 ## Next?
 
-- CLI prompt, look and feel, prioritize differentiating "where you are", e.g.
-  linux, windows, mac os, local vs remote
-- Font
-- PowerShell
-
-```
-Set-PSReadLineOption -EditMode Vi
-```
+See the [TODO list](.config/dotbare-cfg/TODO.md) for upcoming tasks and ideas.
 
 ## Notes
 
 ```
 # must use 127.0.0.1 for Windows
 glances -w -B 127.0.0.1
+```
+
+```powershell
+Set-PSReadLineOption -EditMode Vi
 ```
 
 Perhaps this is a good place to capture some AI Agent prompts.
