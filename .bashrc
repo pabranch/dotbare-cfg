@@ -171,17 +171,23 @@ fi
 # https://explainshell.com/explain?cmd=less+-FiReX
 export LESS=-FiReX
 
-# setup brew if installed
-if _is_command brew; then
-	brew_prefix=$(brew --prefix)
-elif [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-	brew_prefix='/home/linuxbrew/.linuxbrew'
-fi
-if [[ -n $brew_prefix ]]; then
-	eval "$("${brew_prefix}"/bin/brew shellenv)"
+# initialize brew if available
+# https://docs.brew.sh/Tips-and-Tricks#load-homebrew-from-the-same-dotfiles-on-different-operating-systems
+_is_command brew || export \
+	PATH="/opt/homebrew/bin:/home/linuxbrew/.linuxbrew/bin:/usr/local/bin:$PATH"
+_is_command brew && eval "$(brew shellenv)"
+if [[ -n $HOMEBREW_PREFIX ]]; then
+  # https://docs.brew.sh/Shell-Completion#configuring-completion-in-bash
+	if [[ -r "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh" ]]; then
+		unset BASH_COMPLETION_VERSINFO # ensures the HB completions are used
+		source "${HOMEBREW_PREFIX}/etc/profile.d/bash_completion.sh"
+	else
+		for COMPLETION in "${HOMEBREW_PREFIX}/etc/bash_completion.d/"*; do
+			[[ -r "${COMPLETION}" ]] && source "${COMPLETION}"
+		done
+	fi
 	# only update once every 24 hours
 	export HOMEBREW_AUTO_UPDATE_SECS=86400
-	_source_if_exists "$brew_prefix/etc/profile.d/bash_completion.sh"
 fi
 
 # Create `outdated` alias for any package managers
@@ -239,7 +245,7 @@ if _is_command wslpath; then
 fi
 
 if _is_command wt; then
-  eval "$(command wt config shell init bash)"
+	eval "$(command wt config shell init bash)"
 fi
 
 # cd w/ memory
@@ -277,8 +283,8 @@ alias plz='sudo $(fc -lnr -1)' # depending on mood ;-)
 # Sources a versioned script under $HOME so this is machine-portable
 # and a silent no-op when the script file is missing.
 if [ -n "${BASH_VERSION:-}" ]; then
-    __it_si="${HOME:-}/.intelligent-terminal/shell-integration_v1.sh"
-    [ -f "$__it_si" ] && . "$__it_si"
-    unset __it_si
+	__it_si="${HOME:-}/.intelligent-terminal/shell-integration_v1.sh"
+	[ -f "$__it_si" ] && . "$__it_si"
+	unset __it_si
 fi
 # <<< intelligent-terminal shell-integration <<<
