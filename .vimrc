@@ -32,6 +32,12 @@ let g:tmux_navigator_save_on_switch = 2
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
+" Write buffer when focus is lost. Requires Focus event terminal support
+autocmd FocusLost * silent! update
+
+" Debug focus change
+autocmd FocusLost * echom "Focus lost detected at " . strftime("%H:%M:%S")
+
 " Use spacebar to page up and down
 nnoremap <Space> <PageDown>zz
 nnoremap <C-b> <PageUp>zz
