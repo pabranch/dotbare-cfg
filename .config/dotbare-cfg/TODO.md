@@ -2,24 +2,24 @@
 
 ## ASAP
 
-    - INIT dedupe README and cfg script
+    [ ] INIT dedupe README and cfg script
 
 ## Soon
 
-    - INIT Install `brew` apps
-    - VIM use vim-sensible?
-      https://github.com/tpope/vim-sensible#readme
+    [ ] INIT Install `brew` apps
+    [ ] VIM use vim-sensible? https://github.com/tpope/vim-sensible#readme
 
 ## Someday
 
-    - CLI prompt, look and feel, prioritize differentiating "where you are" (e.g. linux, windows, mac os, local vs remote)
-    - Font
-    - PowerShell
-
+    [ ] Font - Nerd Fonts
+    [ ] PowerShell
+    [ ] tmux-palette https://github.com/pabranch/tmux-palette
 
 ## Done!
 
-    - TMUX plugin manager https://github.com/tmux-plugins/tpm#readme
-    - VIM improve search highlighting
-    - VIM make spacebar scroll like w/ `less`
-    - BASH git completion for `g` and `cfg` wrappers
+    [x] CLI prompt, look and feel, prioritize differentiating "where you are" (e.g. linux, windows, mac os, local vs remote) -- Used starlight 
+    [x] TMUX plugin manager https://github.com/tmux-plugins/tpm#readme -- Used
+tpack
+    [x] VIM improve search highlighting
+    [x] VIM make spacebar scroll like w/ `less`
+    [x] BASH git completion for `g` and `cfg` wrappers
