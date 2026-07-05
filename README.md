@@ -11,6 +11,7 @@ The [initial setup](#initial-setup) is found a the bottom of these instructions.
 - Use objective categories when creating directory structures. Things like date,
   source, or security requirments. Use tags and that sort of thing for
   subjective categorization.
+- Create a `benchmark` directory for any benchmarking tools
 
 ### Git
 
