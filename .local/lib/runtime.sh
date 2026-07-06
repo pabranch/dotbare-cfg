@@ -80,3 +80,13 @@ _outdated() {
 		return 1
 	fi
 }
+
+# Should set the text on the current tab in a modern terminal
+set_tab_title() {
+	local title="${*}"
+	if [[ -n "$TMUX" ]]; then
+		printf "\ePtmux;\e\e]0;%s\007\e\\" "$title"
+	else
+		printf "\e]0;%s\007" "$title"
+	fi
+}
