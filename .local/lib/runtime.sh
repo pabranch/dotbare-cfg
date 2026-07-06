@@ -1,10 +1,10 @@
 # shellcheck shell=bash
-# library - source only
+# library file - source only
 # portable shell runtime helpers
 
 # Platform detection (returns one of: linux, macos, msys, cygwin)
 detect_platform() {
-	if (( BASH_VERSINFO[0] < 4 )); then
+	if ((BASH_VERSINFO[0] < 4)); then
 		echo "Error: Bash version 4 or higher is required." >&2
 		return 1
 	fi
@@ -27,6 +27,7 @@ detect_platform() {
 # should fail if it is not a file or readable!
 _source_if_exists() {
 	local filename=${1?no filename specified}
+	# shellcheck disable=1090
 	[ -e "$filename" ] && . "$filename"
 }
 
@@ -45,8 +46,10 @@ _outdated() {
 		alias brewed='sort <(brew list --installed-on-request; brew list --cask)'
 		alias all-brewed='cat ~/.config/dotbare-cfg/all-brewed'
 		alias diff-brewed='diff <(brewed) <(all-brewed)'
-		alias update-all-brewed='tf=$(mktemp); sort -u <(all-brewed; brewed) >$tf; \
-      mv $tf ~/.config/dotbare-cfg/all-brewed; unset tf'
+		# shellcheck disable=2154
+		alias update-all-brewed='tf=$(mktemp) \
+      && sort -u <(all-brewed; brewed) >$tf \
+      && mv $tf ~/.config/dotbare-cfg/all-brewed && unset tf'
 	fi
 	if _is_command apt; then
 		[[ -n $outdated_cmd ]] && outdated_cmd+='; '
@@ -55,6 +58,7 @@ _outdated() {
 	if _is_command scoop; then
 		[[ -n $outdated_cmd ]] && outdated_cmd+='; '
 		outdated_cmd+='echo "-> scoop ..."; scoop update &>/dev/null && scoop status -l'
+		# shellcheck disable=2142  # $1 is not a positional parameter
 		alias scooped='scoop list | awk '\''NR>4&&NF{print $1}'\'''
 		alias all-scooped='cat ~/.config/dotbare-cfg/all-scooped'
 		alias diff-scooped='diff <(scooped) <(all-scooped)'
@@ -69,6 +73,7 @@ _outdated() {
 		alias update-all-wingot='tf=$(mktemp); sort -u <(all-wingot; wingot) >$tf; mv $tf ~/.config/dotbare-cfg/all-wingot; unset tf'
 	fi
 	if [[ -n $outdated_cmd ]]; then
+		# shellcheck disable=2139  # expanding when defined is desired behavior
 		alias outdated="$outdated_cmd"
 	else
 		alias outdated='echo "No supported package manager found."'
