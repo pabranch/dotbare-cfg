@@ -1,6 +1,6 @@
 # Agent Instructions
 
-High-signal details for AI agents working in this repository.
+High-signal details for AI agents working in this (dotbare-cfg) repository.
 
 ## The `cfg` Bare Git Paradigm
 - **Repo Structure:** This is a `dotfiles` repository managed via a bare Git repo at `$HOME/.cfg` with work-tree `$HOME`.
@@ -26,11 +26,3 @@ High-signal details for AI agents working in this repository.
 ## Shell Quality Standards
 - **Linting:** All shell scripts (`.bashrc`, `.local/lib/*.sh`, etc.) must pass `shellcheck`. Use `# shellcheck shell=bash` at the top of sourced scripts.
 - **Formatting:** Keep scripts formatted with `shfmt`.
-
-## AI Agent Tooling Preferences
-- **Prefer Modern Tooling:** When performing system tasks, leverage modern tools installed in the environment for better performance and context:
-  - **`ripgrep` (rg):** Use for all searching and pattern matching.
-  - **`fd`:** Use for file discovery (respects ignore patterns).
-  - **`eza`:** Use for directory listings (prefers color and metadata).
-  - **`bat`:** Use for file viewing (syntax highlighting and line numbers).
-  - **`zoxide`/`fzf`:** Use for efficient file/directory navigation.
