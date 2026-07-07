@@ -1,5 +1,4 @@
 # Created by https://www.toptal.com/developers/gitignore/api/linux,windows,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=linux,windows,macos
 
 ### Linux ###
 *~
@@ -76,7 +75,8 @@ $RECYCLE.BIN/
 
 # End of https://www.toptal.com/developers/gitignore/api/linux,windows,macos
 
-# Always ignore these items. Use `!` prefix to override
+##############################################################################
+# Always ignore these items. Use `!` prefix to override any specific cases
 
 # Compiled source
 ##############################
@@ -125,3 +125,7 @@ $RECYCLE.BIN/
 .iml
 *.sublime-workspace
 
+# Secrets
+##############################
+.env
+.secrets?
