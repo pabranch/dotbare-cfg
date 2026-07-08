@@ -33,7 +33,7 @@ let g:tmux_navigator_save_on_switch = 2
 let g:tmux_navigator_disable_when_zoomed = 1
 
 " Write buffer when focus is lost. Requires Focus event terminal support
-autocmd FocusLost * silent! update
+autocmd BufLeave,FocusLost * silent! wall
 
 " Debug focus change
 autocmd FocusLost * echom "Focus lost detected at " . strftime("%H:%M:%S")
