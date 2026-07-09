@@ -244,10 +244,6 @@ if _is_command wslpath; then
 	_source_if_exists "$HOME/.local/lib/wsl.sh"
 fi
 
-if _is_command wt; then
-	eval "$(command wt config shell init bash)"
-fi
-
 # cd w/ memory
 if _is_command zoxide; then
 	eval "$(zoxide init bash)"
