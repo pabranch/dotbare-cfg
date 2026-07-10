@@ -1,6 +1,10 @@
 " skip backwards compatibility w/ vi to enable modern features
 set nocompatible
 
+" Set UTF-8 before interpreting any non-ASCII characters in this file
+set encoding=utf-8
+scriptencoding utf-8
+
 " Need to set the leader before defining any leader mappings
 let mapleader = ","
 
@@ -25,6 +29,22 @@ nnoremap <leader>rrc :source $MYVIMRC<CR>
 
 " Automatically save when changing context
 set autowrite     " Automatically :write before running commands
+
+" Install vim-tmux-navigator when it is missing
+let s:tmux_navigator_dir = expand('~/.vim/pack/plugins/start/vim-tmux-navigator')
+if !isdirectory(s:tmux_navigator_dir)
+  let s:clone_output = systemlist(
+        \ 'git clone --depth 1 git@github.com:christoomey/vim-tmux-navigator.git '
+        \ . shellescape(s:tmux_navigator_dir) . ' 2>&1')
+  if v:shell_error
+    echohl ErrorMsg
+    echomsg 'Failed to install vim-tmux-navigator:'
+    for s:line in s:clone_output
+      echomsg s:line
+    endfor
+    echohl None
+  endif
+endif
 
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
@@ -77,8 +97,6 @@ set shiftround
 set expandtab
 
 " Display extra whitespace
-scriptencoding utf-8
-set encoding=utf-8
 set list listchars=tab:»·,trail:·,nbsp:·
 
 " Use one space, not two, after punctuation.
