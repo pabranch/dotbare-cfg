@@ -2,12 +2,21 @@
 
 ## ASAP
 
-    [ ] INIT dedupe README and cfg script
+- [ ] [INIT Make bootstrap backups safe and reliable](PLAN.bootstrap-backups.md)
+- [ ] [SHELL Bring shell files into lint and format compliance](PLAN.shell-quality.md)
+- [ ] [TEST Add automated configuration validation](PLAN.configuration-validation.md)
+- [ ] [VIM Guard machine-specific startup configuration](PLAN.vim-portability.md)
+- [ ] [INIT Consolidate bootstrap documentation and implementation](PLAN.bootstrap-documentation.md)
 
 ## Soon
 
-    [ ] INIT Install `brew` apps
-    [ ] VIM use vim-sensible? https://github.com/tpope/vim-sensible#readme
+- [ ] [PORT Audit common configuration for cross-platform behavior](PLAN.cross-platform-main.md)
+- [ ] [WSL Turn the uidmap command snippet into a proper script](PLAN.wsl-uidmap-script.md)
+- [ ] [TMUX Report plugin bootstrap failures](PLAN.tmux-plugin-bootstrap.md)
+- [ ] [PKG Add an optional package restoration workflow](PLAN.package-restoration.md)
+- [ ] [DOC Clean up stale and incomplete documentation](PLAN.documentation-cleanup.md)
+- [ ] INIT Install `brew` apps
+- [ ] VIM use vim-sensible? https://github.com/tpope/vim-sensible#readme
 
 ## Someday
 
