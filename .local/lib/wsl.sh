@@ -17,6 +17,7 @@ get-winenv
 
 alias code='"$WINHOME/AppData/Local/Programs/Microsoft VS Code/bin/code"'
 alias wsl='/mnt/c/windows/system32/wsl.exe'
+alias chrome='/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe'
 
 wsl-reboot() {
 	# shellcheck disable=2207
