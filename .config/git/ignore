@@ -129,3 +129,7 @@ $RECYCLE.BIN/
 ##############################
 .env
 .secrets?
+
+# History/Cache files
+##############################
+.netrwhist
