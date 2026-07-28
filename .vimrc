@@ -34,7 +34,7 @@ set autowrite     " Automatically :write before running commands
 let s:tmux_navigator_dir = expand('~/.vim/pack/plugins/start/vim-tmux-navigator')
 if !isdirectory(s:tmux_navigator_dir)
   let s:clone_output = systemlist(
-        \ 'git clone --depth 1 git@github.com:christoomey/vim-tmux-navigator.git '
+        \ 'git clone --depth 1 https://github.com/christoomey/vim-tmux-navigator.git '
         \ . shellescape(s:tmux_navigator_dir) . ' 2>&1')
   if v:shell_error
     echohl ErrorMsg
