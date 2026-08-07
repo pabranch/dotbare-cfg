@@ -1,0 +1,2 @@
+term_.prefs_.set('user-css-text', '@font-face {font-family: "JetBrains Mono Nerd Font"; src: url("https://cdn.jsdelivr.net/gh/ryanoasis/nerd-fonts@v3.5.0/patched-fonts/JetBrainsMono/Ligatures/JetBrainsMonoNerdFont-Regular.ttf"); font-weight: normal; font-style: normal;} x-row {text-rendering: optimizeLegibility;font-variant-ligatures: normal;}');
+term_.prefs_.set('font-family', 'JetBrains Mono Nerd Font,  monospace');
