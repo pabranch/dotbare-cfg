@@ -67,7 +67,7 @@ _outdated() {
 	if _is_command winget; then
 		[[ -n $outdated_cmd ]] && outdated_cmd+='; '
 		outdated_cmd+='echo "-> winget ..."; winget.exe source update &>/dev/null && winget.exe upgrade --include-unknown'
-		alias wingot='winget.exe list --source winget | tail -n+3 | cut -c-49 | sort -u'
+		alias wingot='winget.exe list --source winget | tail -n+3 | cut -c68- | awk "{print \$1}" | sort -u'
 		alias all-wingot='cat ~/.config/dotbare-cfg/all-wingot'
 		alias diff-wingot='diff <(wingot) <(all-wingot)'
 		alias update-all-wingot='tf=$(mktemp); sort -u <(all-wingot; wingot) >$tf; mv $tf ~/.config/dotbare-cfg/all-wingot; unset tf'
