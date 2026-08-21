@@ -1,0 +1,3 @@
+# Vim plugin installs (nested git clones)
+# Managed by minpac (:PackUpdate) or git submodules later
+.vim/pack/

@@ -30,21 +30,16 @@ nnoremap <leader>rrc :source $MYVIMRC<CR>
 " Automatically save when changing context
 set autowrite     " Automatically :write before running commands
 
-" Install vim-tmux-navigator when it is missing
-let s:tmux_navigator_dir = expand('~/.vim/pack/plugins/start/vim-tmux-navigator')
-if !isdirectory(s:tmux_navigator_dir)
-  let s:clone_output = systemlist(
-        \ 'git clone --depth 1 https://github.com/christoomey/vim-tmux-navigator.git '
-        \ . shellescape(s:tmux_navigator_dir) . ' 2>&1')
-  if v:shell_error
-    echohl ErrorMsg
-    echomsg 'Failed to install vim-tmux-navigator:'
-    for s:line in s:clone_output
-      echomsg s:line
-    endfor
-    echohl None
-  endif
-endif
+" minpac plugin manager (native pack/ structure)
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+call minpac#add('christoomey/vim-tmux-navigator')
+
+" Commands to manage plugins
+command! PackUpdate packadd minpac | call minpac#update('', {'do': 'call minpac#status()'})
+command! PackClean  packadd minpac | call minpac#clean()
+command! PackStatus packadd minpac | call minpac#status()
 
 " Write all buffers before navigating from Vim to tmux pane
 let g:tmux_navigator_save_on_switch = 2
