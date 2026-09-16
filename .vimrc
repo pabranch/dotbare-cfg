@@ -47,11 +47,6 @@ let g:tmux_navigator_save_on_switch = 2
 " Disable tmux navigator when zooming the Vim pane
 let g:tmux_navigator_disable_when_zoomed = 1
 
-" Use spacebar to page up and down
-nnoremap <Space> <PageDown>zz
-nnoremap <C-b> <PageUp>zz
-"nnoremap <Shift-Space> <PageUp>  " this requires remapping at OS level
-
 " Switch syntax highlighting on, when the terminal has colors
 if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
     syntax on
