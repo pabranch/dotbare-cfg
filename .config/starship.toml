@@ -3,15 +3,13 @@
 format = """
 [](red)\
 $os\
-$username\
+\
 [](bg:peach fg:red)\
 $directory\
 [](bg:yellow fg:peach)\
 $git_branch\
 $git_status\
-[](bg:lavender fg:yellow)\
-$time\
-[ ](fg:lavender)\
+[](fg:yellow)\
 $cmd_duration\
 $line_break\
 $character"""
