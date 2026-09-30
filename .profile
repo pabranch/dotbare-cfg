@@ -31,3 +31,11 @@ PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
+##
+# Your previous /Users/perry/.profile file was backed up as /Users/perry/.profile.macports-saved_2026-09-14_at_15:37:46
+##
+
+# MacPorts Installer addition on 2026-09-14_at_15:37:46: adding an appropriate PATH variable for use with MacPorts.
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# Finished adapting your PATH environment variable for use with MacPorts.
+
