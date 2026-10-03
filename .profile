@@ -16,6 +16,9 @@ if [ -n "$BASH_VERSION" ]; then
 	fi
 fi
 
+# tool-specific XDG relocations
+[ -e "$HOME/.config/xdg-tools.env.sh" ] && . "$HOME/.config/xdg-tools.env.sh"
+
 # set PATH to include any of user's private bin directories
 for bindir in bin .local/bin; do
 	PATH="$HOME/$bindir:$PATH"

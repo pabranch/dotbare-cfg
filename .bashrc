@@ -5,6 +5,9 @@
 # shellcheck shell=bash
 # shellcheck disable=SC1090
 
+# tool-specific XDG relocations
+[ -e "$HOME/.config/xdg-tools.env.sh" ] && source "$HOME/.config/xdg-tools.env.sh"
+
 # If not running interactively, don't do anything
 case $- in
 *i*) ;;

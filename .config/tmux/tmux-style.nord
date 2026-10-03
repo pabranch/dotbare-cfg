@@ -1,0 +1,22 @@
+# Style
+gray_light="#D8DEE9"
+gray_medium="#ABB2BF"
+gray_dark="#3B4252"
+green_soft="#A3BE8C"
+blue_muted="#81A1C1"
+cyan_soft="#88C0D0"
+
+set -g status-interval 3
+set -g status-position top
+set -g status-style "fg=${gray_light},bg=${gray_dark}"
+set -g status-left "#{?client_prefix,#[reverse] PREFIX #[noreverse],}#[fg=${gray_light},nobold] "
+set -g status-right " #{cpu}   #{mem}  󱊣 #{battery}  |  #[fg=${green_soft},bold] %H:%M   #S "
+
+set -g window-status-current-format "#[fg=${cyan_soft},bold]  #[underscore]#I:#W#[nounderscore]#{?window_zoomed_flag, 󰍋 ,}"
+set -g window-status-format " #I:#W"
+
+set -g message-style "fg=${green_soft},bg=${gray_dark}"
+set -g mode-style "fg=${gray_dark},bg=${blue_muted}"
+
+set -g pane-border-style "fg=${gray_dark}"
+set -g pane-active-border-style "fg=${green_soft}"

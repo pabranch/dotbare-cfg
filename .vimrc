@@ -20,6 +20,8 @@ set laststatus=2  " Always display the status line
 set nobackup
 set nowritebackup
 set history=500
+" keep Vim state out of $HOME (XDG state dir)
+set viminfofile=$HOME/.local/state/vim/viminfo
 
 set backspace=indent,eol,start
 
