@@ -144,3 +144,5 @@
 [include]
   path = ~/.config/git/delta.inc
   path = ~/.local/state/git/safe.inc
+[windows]
+	appendAtomically = false
