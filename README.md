@@ -45,6 +45,16 @@ Set-PSReadLineOption -EditMode Vi
 
 Perhaps this is a good place to capture some AI Agent prompts.
 
+## Someday notes
+
+A `someday.md` file is a scratchpad for humans. It captures random thoughts and
+half-formed ideas, with no intent to ever act on them. It is not a backlog or a
+task list: agents should not treat it as work to be done, and neither will I.
+If an idea ever graduates into real intent, it moves to the
+The first one lives at `~/.agents/someday.md`.
+
+[TODO list](.config/dotbare-cfg/TODO.md).
+
 ## Initial setup
 
 [Instructions](.config/dotbare-cfg/README.md)
