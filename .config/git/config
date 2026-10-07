@@ -137,7 +137,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
-[branch "master"]
+[branch "main"]
 	remote = upstream
 	pushRemote = origin
 
