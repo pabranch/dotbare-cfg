@@ -20,6 +20,8 @@ set laststatus=2  " Always display the status line
 set nobackup
 set nowritebackup
 set history=500
+set viminfofile=$HOME/.local/state/vim/viminfo
+set packpath^=$HOME/.local/share/vim
 
 set backspace=indent,eol,start
 
@@ -31,7 +33,7 @@ nnoremap <leader>rrc :source $MYVIMRC<CR>
 set autowrite     " Automatically :write before running commands
 
 " Install vim-tmux-navigator when it is missing
-let s:tmux_navigator_dir = expand('~/.vim/pack/plugins/start/vim-tmux-navigator')
+let s:tmux_navigator_dir = expand('~/.local/share/vim/pack/plugins/start/vim-tmux-navigator')
 if !isdirectory(s:tmux_navigator_dir)
   let s:clone_output = systemlist(
         \ 'git clone --depth 1 https://github.com/christoomey/vim-tmux-navigator.git '
