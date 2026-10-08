@@ -45,4 +45,4 @@ fi
 # export PI_CODING_AGENT_DIR="$HOME/.config/pi"
 # export PI_CODING_AGENT_SESSION_DIR="$HOME/.local/share/pi/sessions"
 # export CLAUDE_CONFIG_DIR="$HOME/.config/claude"
-# export TMUX_PLUGIN_MANAGER_PATH="$HOME/.local/share/tmux/plugins"
+export TMUX_PLUGIN_MANAGER_PATH="$HOME/.local/share/tmux/plugins"
