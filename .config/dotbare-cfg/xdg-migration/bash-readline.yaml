@@ -1,0 +1,25 @@
+name: xdg-bash-readline
+base_ref: local/main
+independent: true
+scope:
+  tracked_files:
+    - .bashrc
+    - .profile
+    - .inputrc
+  related_files: []
+canonical_paths:
+  .inputrc: .config/readline/inputrc
+instructions:
+  - Move the tracked Readline configuration to .config/readline/inputrc.
+  - Preserve a relative .inputrc compatibility symlink
+  - Create destination parent directories before moving related files.
+  - Never overwrite an existing destination; report conflicts for manual resolution.
+  - Keep the migration idempotent and separate from the steady-state environment configuration.
+validation:
+  - bash -n .bashrc .profile
+  - shellcheck .bashrc .profile
+  - Start a clean Bash session and verify INPUTRC.
+  - Verify Readline loads the canonical inputrc path.
+exclusions:
+  - Do not migrate unrelated application homes, caches, or package directories.
+  - Do not add a general XDG relocation list to the environment configuration.

@@ -1,0 +1,29 @@
+name: xdg-vim
+base_ref: local/main
+independent: true
+scope:
+  tracked_files:
+    - .vimrc
+    - .vim/README.md
+  related_files:
+    - .viminfo
+    - .vim/pack/plugins/start/vim-tmux-navigator
+canonical_paths:
+  .viminfo: .local/state/vim/viminfo
+  .vim/pack/plugins/start/vim-tmux-navigator: .local/share/vim/pack/plugins/start/vim-tmux-navigator
+instructions:
+  - Keep the tracked Vim configuration and documentation under their canonical repository paths unless Vim's runtime layout requires a move.
+  - Configure Vim explicitly to write state to .local/state/vim/viminfo.
+  - Update .vimrc and Vim's packpath so Vim discovers packages from .local/share/vim/pack/.
+  - Update the .vimrc bootstrap destination to .local/share/vim/pack/plugins/start/vim-tmux-navigator.
+  - Do not silently move package state without preserving the .vimrc bootstrap behavior.
+  - Create destination parent directories before moving related state.
+  - Never overwrite an existing destination; report conflicts for manual resolution.
+  - Keep migration logic separate from the steady-state .vimrc configuration.
+validation:
+  - vim -Nu .vimrc -n -es +'qall'
+  - Verify Vim can read and write the canonical viminfo path.
+  - Verify plugin bootstrap failure does not prevent Vim startup.
+exclusions:
+  - Do not migrate unrelated editor or application directories.
+  - Do not change Vim behavior unrelated to state location or plugin lookup.

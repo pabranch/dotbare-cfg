@@ -1,0 +1,36 @@
+name: xdg-tmux
+base_ref: local/main
+independent: true
+scope:
+  tracked_files:
+    - .tmux.conf
+    - .tmux-style
+    - .tmux-style.catpuccin
+    - .tmux-style.nord
+    - .tmux/scripts/toggle-layout.sh
+  related_files:
+    - .tmux/plugins
+canonical_paths:
+  .tmux.conf: .config/tmux/tmux.conf
+  .tmux-style: .config/tmux/tmux-style
+  .tmux-style.catpuccin: .config/tmux/tmux-style.catpuccin
+  .tmux-style.nord: .config/tmux/tmux-style.nord
+  .tmux/scripts/toggle-layout.sh: .config/tmux/scripts/toggle-layout.sh
+  .tmux/plugins: .local/share/tmux/plugins
+instructions:
+  - Move the tracked tmux configuration, styles, and scripts into .config/tmux/.
+  - Update every path reference in the moved configuration.
+  - Configure TMUX_PLUGIN_MANAGER_PATH in the tmux configuration, not in a general XDG environment file.
+  - Move each legacy plugin entry only when its destination entry does not already exist.
+  - Never overwrite or merge plugin directories automatically; report conflicts for manual resolution.
+  - Keep plugin migration logic separate from the steady-state tmux configuration where practical.
+  - Do not assume the plugin directory is tracked by Git.
+validation:
+  - Parse the configuration with an isolated tmux server and socket.
+  - Verify the plugin path resolves to .local/share/tmux/plugins.
+  - Verify existing destination plugins are not overwritten.
+  - Test toggle-layout.sh from the new path.
+  - Test tmux-resurrect save and restore functionality if it is in the tmux plugins directory
+exclusions:
+  - Do not migrate unrelated tool homes or caches.
+  - Do not alter tmux key bindings, styles, or plugin selections beyond path updates.

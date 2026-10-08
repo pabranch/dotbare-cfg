@@ -1,0 +1,25 @@
+name: xdg-git
+base_ref: local/main
+independent: true
+scope:
+  tracked_files:
+    - .gitconfig
+    - .config/git/delta.inc
+    - .config/git/ignore
+  related_files: []
+canonical_paths:
+  .gitconfig: .config/git/config
+instructions:
+  - Move .gitconfig to the native XDG location .config/git/config.
+  - Keep already-XDG Git files in place.
+  - Do not create a .gitconfig symlink; Git loads both the legacy and XDG locations, so a symlink can cause duplicate configuration loading.
+  - Preserve all Git configuration and includes during the move.
+  - Do not migrate credentials, repositories, or other Git state without a separately identified tracked-file relationship.
+validation:
+  - git config --global --list --show-origin
+  - git config --global user.name
+  - git config --global user.email
+  - git diff --check
+exclusions:
+  - Do not change unrelated Git behavior such as default branch names.
+  - Do not migrate generic tool state merely because Git is used to manage it.

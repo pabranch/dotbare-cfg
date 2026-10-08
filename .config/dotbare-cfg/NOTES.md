@@ -28,3 +28,7 @@ Observations from the 2026-07-10 review that do not require implementation tasks
 - **Extended Keys:** `set -g extended-keys on` and `set -g extended-keys-format csi-u` forward modifier keys (`Shift+Enter`, `Ctrl+Enter`) properly to interactive tools like `pi`.
 - **Compatibility:** `extended-keys-format csi-u` requires tmux 3.5+. (falls back to `xterm`/`modifyOtherKeys`). Requires terminal emulator support (Ghostty, Kitty, WezTerm, iTerm2, Alacritty, Windows Terminal).
 - **Continuum:** Boot automation (`@continuum-boot`) is omitted to avoid startup delays
+
+## Future XDG review
+
+- Investigate `.bash_history` and `.lesshst` separately. They are not explicitly referenced or controlled by the tracked files in `local/main`, so they are outside the current XDG migration scope.
