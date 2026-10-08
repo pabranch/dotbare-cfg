@@ -5,6 +5,10 @@
 # shellcheck shell=bash
 # shellcheck disable=SC1090
 
+# Readline configuration lives under XDG config directories
+INPUTRC="$HOME/.config/readline/inputrc"
+export INPUTRC
+
 # If not running interactively, don't do anything
 case $- in
 *i*) ;;
