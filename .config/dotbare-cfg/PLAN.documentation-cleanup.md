@@ -6,12 +6,13 @@ Correct stale, incomplete, and low-value documentation while keeping instruction
 
 ## Implementation
 
-1. Fix obvious wording and spelling issues in the top-level README, including “found a the bottom” and “security requirments.”
-2. Correct “starlight” to “Starship” in the TODO history.
-3. Decide whether `.vim/README.md` should document the package directory, link to Vim setup, or be removed.
-4. Fill in or remove the placeholder Usage section in `.config/dotbare-cfg/README.md` as part of bootstrap documentation work.
-5. Review `NOTES.md` and move durable procedures into focused documentation while leaving genuine scratch notes clearly labeled.
-6. Check internal links and ensure the initial-setup section remains last where requested.
+1. Decide whether `.vim/README.md` should document the package directory, link to Vim setup, or be removed.
+2. Fill in or remove the placeholder Usage section in `.config/dotbare-cfg/README.md` as part of bootstrap documentation work.
+3. Review `NOTES.md` and move durable procedures into focused documentation while leaving genuine scratch notes clearly labeled.
+
+## Done
+
+- Internal Markdown links resolve, and the top-level README `Initial setup` section remains last.
 
 ## Validation
 

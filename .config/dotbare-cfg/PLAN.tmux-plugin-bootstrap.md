@@ -6,7 +6,7 @@ Make tmux plugin-manager installation failures visible and actionable without br
 
 ## Implementation
 
-1. Review the current `if`/`if-shell` bootstrap commands at the bottom of `.tmux.conf`.
+1. Review the current `if`/`if-shell` bootstrap commands at the bottom of `.config/tmux/tmux.conf`.
 2. Use a shallow clone where compatible and avoid retrying when the destination is already valid.
 3. Capture clone and plugin-install output in a predictable log under the configuration or state directory.
 4. Display a concise tmux message on failure that points to the log; do not silently append only a generic message to `~/tmux-errors.log`.

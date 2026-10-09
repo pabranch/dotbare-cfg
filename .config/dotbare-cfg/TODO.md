@@ -26,7 +26,7 @@
 
 ## Done!
 
-    [x] CLI prompt, look and feel, prioritize differentiating "where you are" (e.g. linux, windows, mac os, local vs remote) -- Used starlight 
+    [x] CLI prompt, look and feel, prioritize differentiating "where you are" (e.g. linux, windows, mac os, local vs remote) -- Used Starship 
     [x] TMUX plugin manager https://github.com/tmux-plugins/tpm#readme -- Used
 tpack
     [x] VIM improve search highlighting

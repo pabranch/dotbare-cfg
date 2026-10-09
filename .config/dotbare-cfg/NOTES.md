@@ -7,7 +7,7 @@ Observations from the 2026-07-10 review that do not require implementation tasks
 - The repository is compact enough to understand without a configuration framework.
 - Common configuration and platform-specific initialization have a clear intended separation.
 - The tmux/Vim navigation model is coherent and documented.
-- `.PERRY.md` and `.config/dotbare-cfg/AGENTS.md` provide high-signal operational guidance for coding agents.
+- `.config/dotbare-cfg/AGENTS.md` provides high-signal operational guidance for coding agents.
 - Optional command integrations are generally guarded by command-existence checks.
 - `.bashrc.local` and `.vimrc.local` provide useful local override points.
 - Shell runtime helpers are sensibly extracted into `.local/lib/runtime.sh`.
@@ -21,7 +21,7 @@ Observations from the 2026-07-10 review that do not require implementation tasks
 - All reviewed Bash files passed `bash -n`.
 - `.vimrc` completed a headless startup test successfully in the current environment.
 - ShellCheck and shfmt findings are recorded as actionable TODO plans rather than reproduced here.
-- `.tmux.conf` has had the most recent churn; changes there deserve isolated startup tests.
+- `.config/tmux/tmux.conf` has had the most recent churn; changes there deserve isolated startup tests.
 
 ## Tmux Configuration & Pi Compatibility
 
@@ -31,4 +31,4 @@ Observations from the 2026-07-10 review that do not require implementation tasks
 
 ## Future XDG review
 
-- Investigate `.bash_history` and `.lesshst` separately. They are not explicitly referenced or controlled by the tracked files in `local/main`, so they are outside the current XDG migration scope.
+- Investigate `.bash_history` and `.lesshst` separately. They are not explicitly referenced or controlled by the tracked files on `main`, so they are outside the current XDG migration scope.

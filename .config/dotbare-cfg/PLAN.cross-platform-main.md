@@ -6,7 +6,7 @@ Make the boundary between portable `main` configuration and platform branches ex
 
 ## Implementation
 
-1. Inventory commands and options in `.bashrc`, `.profile`, `.vimrc`, and `.tmux.conf` that differ among GNU/Linux, macOS, MSYS, Cygwin, and WSL.
+1. Inventory commands and options in `.bashrc`, `.profile`, `.vimrc`, and `.config/tmux/tmux.conf` that differ among GNU/Linux, macOS, MSYS, Cygwin, and WSL.
 2. Address the unconditional GNU `ls --ignore` alias in `.bashrc`; move it to platform initialization or select supported options dynamically.
 3. Audit fixed executable and installation paths such as `/usr/bin/lesspipe`, Homebrew prefixes, `/bin/bash`, and Linuxbrew FZF.
 4. Keep common behavior in shared files and put true platform differences in `.local/lib/init-<platform>.sh`.

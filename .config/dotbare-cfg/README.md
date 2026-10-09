@@ -48,8 +48,8 @@ brew install git-delta
 
 Install basic dark mode.
 ```bash
-mkdir -p ~/.vim/pack/themes/start
-cd ~/.vim/pack/themes/start
+mkdir -p ~/.local/share/vim/pack/themes/start
+cd ~/.local/share/vim/pack/themes/start
 git clone https://github.com/tomasiser/vim-code-dark
 cd -
 ```

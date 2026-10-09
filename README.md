@@ -4,12 +4,12 @@ Here's where I'll describe how I manage my home directories. In particular, I'll
 figure out common directories and cross-platform details. It'll be nice to have
 a place to put general notes.
 
-The [initial setup](#initial-setup) is found a the bottom of these instructions.
+The [initial setup](#initial-setup) is found at the bottom of these instructions.
 
 ## Style guidelines
 
 - Use objective categories when creating directory structures. Things like date,
-  source, or security requirments. Use tags and that sort of thing for
+  source, or security requirements. Use tags and that sort of thing for
   subjective categorization.
 - Create a `benchmark` directory for any benchmarking tools
 
@@ -44,16 +44,6 @@ Set-PSReadLineOption -EditMode Vi
 ```
 
 Perhaps this is a good place to capture some AI Agent prompts.
-
-## Someday notes
-
-A `someday.md` file is a scratchpad for humans. It captures random thoughts and
-half-formed ideas, with no intent to ever act on them. It is not a backlog or a
-task list: agents should not treat it as work to be done, and neither will I.
-If an idea ever graduates into real intent, it moves to the
-The first one lives at `~/.agents/someday.md`.
-
-[TODO list](.config/dotbare-cfg/TODO.md).
 
 ## Initial setup
 
