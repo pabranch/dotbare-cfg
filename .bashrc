@@ -280,3 +280,9 @@ alias plz='sudo $(fc -lnr -1)' # depending on mood ;-)
 
 # Use XDG config location for Pi
 export PI_CODING_AGENT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pi"
+
+# Shared libraries for the mise-selected CUDA build of llama.cpp
+export LD_LIBRARY_PATH="$HOME/.local/opt/llama.cpp-cuda/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+# Store and discover llama.cpp models under XDG data
+export LLAMA_ARG_MODELS_DIR="${XDG_DATA_HOME:-$HOME/.local/share}/llama.cpp/models"
