@@ -277,3 +277,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias fk='sudo $(fc -lnr -1)'
 alias plz='sudo $(fc -lnr -1)' # depending on mood ;-)
+
+# Use XDG config location for Pi
+export PI_CODING_AGENT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pi"
