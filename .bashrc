@@ -5,6 +5,10 @@
 # shellcheck shell=bash
 # shellcheck disable=SC1090
 
+# Use XDG config location for Pi
+PI_CODING_AGENT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pi"
+export PI_CODING_AGENT_DIR
+
 # Readline configuration lives under XDG config directories
 INPUTRC="$HOME/.config/readline/inputrc"
 export INPUTRC
