@@ -15,17 +15,9 @@ The [initial setup](#initial-setup) is found at the bottom of these instructions
 
 ### Git
 
-Commit Prefix Reference for my DOTFILES
-
-| Prefix | Environment             | Description |
-|--------|-------------------------|-------------|
-| `GB$`  | Git Bash                | Changes are Git Bash specific |
-| `PS>`  | PowerShell              | Changes are PowerShell specific |
-| `WSL`  | Windows Subsystem Linux | Changes are WSL specific |
-| `NFC`  | Global Compatibility  | No Functional Change (refactoring or docs changes with no behavior changes) |
-| `WIP`  | (Temporary)             | Work in Progress (must be squashed/removed before merging to main) |
-| `TMP`  | (Temporary)             | Temporary changes (must be squashed/removed before merging to main) |
-| *(none)* | Global Compatibility  | Changes are cross-shell compatible |
+Commit prefix reference for the dotfiles repo lives in
+[`~/.agents/perry/dotfiles.md`](.agents/perry/dotfiles.md) — same prefixes for
+human and agent commits.
 
 
 ## Next?
