@@ -9,6 +9,10 @@
 PI_CODING_AGENT_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/pi"
 export PI_CODING_AGENT_DIR
 
+# Use XDG config location for Claude Code
+CLAUDE_CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/claude"
+export CLAUDE_CONFIG_DIR
+
 # Readline configuration lives under XDG config directories
 INPUTRC="$HOME/.config/readline/inputrc"
 export INPUTRC
