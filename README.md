@@ -15,9 +15,8 @@ The [initial setup](#initial-setup) is found at the bottom of these instructions
 
 ### Git
 
-Commit prefix reference for the dotfiles repo lives in
-[`~/.agents/perry/dotfiles.md`](.agents/perry/dotfiles.md) — same prefixes for
-human and agent commits.
+Commit prefix reference for the dotfiles repo lives in `~/.agents/perry/dotfiles.md`
+— same prefixes for human and agent commits.
 
 
 ## Next?

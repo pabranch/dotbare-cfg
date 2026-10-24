@@ -27,8 +27,7 @@
 ## Done!
 
     [x] CLI prompt, look and feel, prioritize differentiating "where you are" (e.g. linux, windows, mac os, local vs remote) -- Used Starship 
-    [x] TMUX plugin manager https://github.com/tmux-plugins/tpm#readme -- Used
-tpack
+    [x] TMUX plugin manager https://github.com/tmux-plugins/tpm#readme -- Used tpm
     [x] VIM improve search highlighting
     [x] VIM make spacebar scroll like w/ `less`
     [x] BASH git completion for `g` and `cfg` wrappers
