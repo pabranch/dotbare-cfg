@@ -39,6 +39,7 @@ General agent instructions live in `$HOME/.agents/AGENTS.md`; personal working d
 - Put macOS-specific changes on `macos`, which must remain rebased onto `origin/main`.
 - After pushing an update to `origin/main`, rebase `macos` onto the updated `main` and push it with `--force-with-lease` so `origin/macos` remains current.
 - Follow the global push policy in `$HOME/.agents/PERRY.md`: never push until Perry explicitly asks.
+- Pushing to `local` (`~/.cfg`) updates refs only; it does not update the bare repo's index or the `$HOME` worktree. After pushing, run `cfg checkout main -- .` in `$HOME` (or `cfg checkout main -- <paths>` for specific files) so `$HOME` files match the pushed commit. Plain `cfg checkout main` is a no-op when already on `main`.
 
 ## Shell Quality Standards
 - **Linting:** All shell scripts (`.bashrc`, `.local/lib/*.sh`, etc.) must pass `shellcheck`. Use `# shellcheck shell=bash` at the top of sourced scripts.
