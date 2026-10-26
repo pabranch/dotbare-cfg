@@ -1,0 +1,1 @@
+- the `~/.bashrc.local` file is sourced from the `~/.bashrc` file

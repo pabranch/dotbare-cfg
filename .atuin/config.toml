@@ -1,0 +1,58 @@
+update_check = false
+enter_accept = true  # default is true, I tried false and didn't like it
+
+style = "compact"
+inline_height = 25
+inline_height_shell_up_key_binding = 15
+
+#filter_mode = "global"
+filter_mode_shell_up_key_binding = "session"
+
+history_filter = [
+  "^brew (upgrade|update|desc)",
+  "^cls$",
+  "^exit$",
+  "^l[ls]$",
+  "^mise (outdated|upgrade)$",
+  "^g l[lgs]$",
+  "^g dfc?$",
+  "^g st$",
+  "^guplgst$",
+  "^vim ",
+  "^v ",
+]
+
+keymap_mode = "vim-insert"
+
+[keymap_cursor]
+vim_insert = "blink-bar"
+vim_normal = "steady-block"
+
+[stats]
+
+[keys]
+
+[preview]
+
+[daemon]
+enabled = true
+autostart = true
+
+[search]
+
+[ui]
+
+[ai]
+enabled = true
+
+[pty_proxy]
+enabled = true
+
+[output]
+enabled = true
+
+[ai.opening]
+send_last_command = true
+
+[threads]
+capture = true

@@ -1,0 +1,8 @@
+[permissions]
+allow = [
+  "Read(/home/perry/**)",
+  "Write(/home/perry/.atuin/**/*)",
+  "Shell",
+  "AtuinHistory",
+  "AtuinOutput",
+]
