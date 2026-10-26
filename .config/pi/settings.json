@@ -5,6 +5,12 @@
   "defaultModel": "openrouter/auto",
   "defaultThinkingLevel": "medium",
   "defaultTools": ["+codemode"],
+  "steeringMode": "one-at-a-time",
+  "transport": "auto",
+  "collapseChangelog": true,
+  "showCacheMissNotices": false,
+  "doubleEscapeAction": "tree",
+  "treeFilterMode": "no-tools",
   "enabledModels": [
     "google/gemini-3.1-flash-lite",
     "google/gemini-3.5-flash",
@@ -19,12 +25,22 @@
     "google/gemini-flash-latest",
     "google/gemini-flash-lite-latest",
     "openrouter/openrouter/auto",
-    "openrouter/openrouter/auto-beta"
+    "openrouter/openrouter/free",
+    "opencode/big-pickle",
+    "opencode/minimax-m3",
+    "opencode/minimax-m2.7",
+    "opencode/claude-haiku-4-5",
+    "opencode/kimi-k2.7-code",
+    "opencode/claude-sonnet-4",
+    "opencode/mimo-v2.5-free",
+    "opencode/deepseek-v4-flash-free",
+    "opencode/north-mini-code-free"
   ],
   "extensions": [
     "~/.agents/pi/extensions"
   ],
   "collapseChangelog": true,
   "treeFilterMode": "no-tools",
-  "hideThinkingBlock": true
+  "hideThinkingBlock": true,
+  "fullscreenExitOutput": "transcript"
 }
