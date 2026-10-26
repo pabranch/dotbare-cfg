@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "atuin": {
+      "command": "/home/linuxbrew/.linuxbrew/bin/atuin",
+      "args": [
+        "mcp"
+      ]
+    }
+  }
+}
