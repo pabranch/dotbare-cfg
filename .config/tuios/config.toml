@@ -1,0 +1,52 @@
+# TUIOS Configuration File
+# This file allows you to customize appearance and keybindings
+#
+# Configuration location: /home/perry/.config/tuios/config.toml
+# Documentation: https://github.com/Gaurav-Gosain/tuios
+# For keybindings documentation, run: tuios keybinds list
+#
+# tuios watches this file. A save takes effect at once, with no restart.
+# tuios does not apply a file that has an error. It keeps the settings that
+# are in use and shows the error on screen.
+# ============================================================================
+
+[startup]
+tiled = true
+daemon = true
+open_default_window = true
+start_in_terminal_mode = true
+
+[keybindings]
+leader_key = "ctrl+space"
+
+[keybindings.terminal_mode]
+terminal_focus_left = ["alt+left", "ctrl+h"]
+terminal_focus_down = ["alt+down", "ctrl+j"]
+terminal_focus_up = ["alt+up", "ctrl+k"]
+terminal_focus_right = ["alt+right", "ctrl+l"]
+
+[keybindings.prefix_mode]
+resize_pane_left_5 = ["H"]
+resize_pane_down_5 = ["J"]
+resize_pane_up_5 = ["K"]
+resize_pane_right_5 = ["L"]
+swap_left = ["{"]
+swap_right = ["}"]
+prefix_toggle_other_rail = []
+prefix_layout = ["l"]
+
+[spotlight]
+enabled = false
+
+[appearance]
+dim_unfocused = 15
+session_border = false
+show_clock = true
+animation_speed = 300
+zoom_animation = false
+
+[appearance.sidebar]
+agent_rest_fold = "off"
+
+[appearance.sidebar.left]
+enabled = false
