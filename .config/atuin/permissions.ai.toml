@@ -2,6 +2,7 @@
 allow = [
   "Read(/home/perry/**)",
   "Write(/home/perry/.atuin/**/*)",
+  "Write(/home/perry/.config/atuin/**/*)",
   "Shell",
   "AtuinHistory",
   "AtuinOutput",
