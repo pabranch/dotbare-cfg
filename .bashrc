@@ -26,6 +26,10 @@ esac
 # load our runtime utilities; eg detect_platform etc.
 [ -e "$HOME/.local/lib/runtime.sh" ] && source "$HOME/.local/lib/runtime.sh"
 
+# Shared Bash helpers.
+# shellcheck disable=SC1091
+[ -f "$HOME/.config/bash/functions.sh" ] && source "$HOME/.config/bash/functions.sh"
+
 platform=$(detect_platform)
 
 # run any platform specific initialization
