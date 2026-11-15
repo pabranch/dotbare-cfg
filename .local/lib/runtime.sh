@@ -11,6 +11,15 @@ detect_platform() {
 	local platform="${OSTYPE:-$(uname -s)}"
 	# normalize to all lowercase
 	platform="${platform,,}"
+	# Git Bash can report OSTYPE=cygwin despite running on MSYS/MinGW.
+	if [[ $platform == cygwin* ]]; then
+		local kernel
+		kernel=$(uname -s)
+		kernel="${kernel,,}"
+		case "$kernel" in
+		msys* | mingw*) platform="$kernel" ;;
+		esac
+	fi
 	case "$platform" in
 	msys* | mingw*) echo 'msys' ;;
 	cygwin*) echo 'cygwin' ;;
