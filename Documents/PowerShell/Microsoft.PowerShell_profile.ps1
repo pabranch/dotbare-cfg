@@ -26,6 +26,11 @@ $OutputEncoding = [Console]::OutputEncoding
 # perhaps use `where` defined in linux-parity to see if zoxide is available
 Invoke-Expression (& { (zoxide init powershell | Out-String) })
 
+# Activate mise for PowerShell
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+    (&mise activate pwsh) | Out-String | Invoke-Expression
+}
+
 # Required for shell integration with Intelligent Terminal
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 
