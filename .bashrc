@@ -213,6 +213,24 @@ _outdated
 # Set up fzf key bindings and fuzzy completion
 _is_command fzf && eval "$(fzf --bash)"
 
+# Set up Atuin shell history and key bindings
+if _is_command atuin; then
+	if [[ $platform == "msys" ]]; then
+		# Native Windows builds do not support the PTY proxy.
+		export ATUIN_PTY_PROXY__ENABLED=false
+		if [[ $(atuin config get -r daemon.enabled 2>/dev/null) == true ]] &&
+			[[ $(atuin config get -r daemon.autostart 2>/dev/null) == true ]]; then
+			# Autostarting from a history hook can keep its output pipe open.
+			# Launch separately; if it stops, hooks fall back to the local DB.
+			export ATUIN_DAEMON__AUTOSTART=false
+			if ! atuin daemon status >/dev/null 2>&1; then
+				(atuin daemon start --daemonize </dev/null >/dev/null 2>&1 &)
+			fi
+		fi
+	fi
+	eval "$(atuin init bash --disable-up-arrow)"
+fi
+
 # prompt config - must come before zoxide
 if _is_command starship; then
 	eval -- "$(starship init bash --print-full-init)"
