@@ -45,6 +45,7 @@ show_clock = true
 panel_padding = 1
 animation_speed = 300
 zoom_animation = false
+zoom_size = 98
 
 [appearance.sidebar]
 agent_rest_fold = "off"
