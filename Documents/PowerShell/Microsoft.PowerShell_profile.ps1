@@ -48,6 +48,9 @@ Remove-Variable __it_si -ErrorAction SilentlyContinue
 $env:LESS = 'FiReX'
 $env:PAGER = 'less -R'
 
+# The generated Coreutils integration requires its default command directory.
+$__coreutilsAvailable = Test-Path -LiteralPath 'C:\Program Files\coreutils\cmd\ls.cmd' -PathType Leaf -ErrorAction Ignore
+if ($__coreutilsAvailable) {
 # DO NOT MODIFY -- coreutils -- 60b36fc6-2d59-49df-be51-28dd2f4c3c9a
 # vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 # Inlining the template into the profile shaves off ~10ms (25%).
@@ -249,3 +252,93 @@ function PSConsoleHostReadLine {
 }
 # ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 # DO NOT MODIFY -- coreutils -- 60b36fc6-2d59-49df-be51-28dd2f4c3c9a
+}
+
+# If Coreutils is available, let Atuin record the original line before it is
+# rewritten. Adapt the generated function without modifying the template.
+if (Get-Command atuin -CommandType Application -ErrorAction SilentlyContinue) {
+    $__coreutilsReader = (Get-Item Function:\PSConsoleHostReadLine).ScriptBlock
+    if ($__coreutilsAvailable) {
+        $__coreutilsSource = $__coreutilsReader.ToString()
+        $__coreutilsReadLine = @'
+    $lastRunStatus = $?
+    Microsoft.PowerShell.Core\Set-StrictMode -Off
+    $line = [Microsoft.PowerShell.PSConsoleReadLine]::ReadLine($host.Runspace, $ExecutionContext, $lastRunStatus)
+'@
+        $__atuinReadLine = @'
+    $line = Atuin\PSConsoleHostReadLine
+    Microsoft.PowerShell.Core\Set-StrictMode -Off
+'@
+    }
+    $__originalDaemonAutostart = $env:ATUIN_DAEMON__AUTOSTART
+    $__daemonAutostartOverridden = $false
+    try {
+        if ($__coreutilsAvailable) {
+            if ([regex]::Matches($__coreutilsSource, [regex]::Escape($__coreutilsReadLine)).Count -ne 1) {
+                throw 'CoreUtils reader changed; Atuin integration was not enabled.'
+            }
+            $__combinedReader = [scriptblock]::Create($__coreutilsSource.Replace($__coreutilsReadLine, $__atuinReadLine))
+            $__expectedOverload = 'static string ReadLine(runspace runspace, System.Management.Automation.EngineIntrinsics engineIntrinsics, System.Threading.CancellationToken cancellationToken, System.Nullable[bool] lastRunStatus)'
+            if (-not [Microsoft.PowerShell.PSConsoleReadLine]::ReadLine.OverloadDefinitions.Contains($__expectedOverload)) {
+                throw 'PSReadLine does not provide the overload required for Atuin integration.'
+            }
+        }
+        if ($env:OS -eq 'Windows_NT') {
+            # Native Windows builds do not support the PTY proxy.
+            $env:ATUIN_PTY_PROXY__ENABLED = 'false'
+            $__daemonEnabled = & atuin config get -r daemon.enabled
+            if ($LASTEXITCODE -ne 0) { throw 'Could not read Atuin daemon settings.' }
+            $__daemonAutostart = & atuin config get -r daemon.autostart
+            if ($LASTEXITCODE -ne 0) { throw 'Could not read Atuin daemon settings.' }
+            if ($__daemonEnabled -eq 'true' -and $__daemonAutostart -eq 'true') {
+                $__daemonPort = [int](& atuin config get -r daemon.tcp_port)
+                if ($LASTEXITCODE -ne 0 -or $__daemonPort -lt 1 -or $__daemonPort -gt 65535) {
+                    throw 'Could not read the Atuin daemon port.'
+                }
+                # A daemon autostarted by the history hook can inherit its output
+                # pipe and block PowerShell. Start it separately and prevent hooks
+                # in this session from autostarting another one.
+                $env:ATUIN_DAEMON__AUTOSTART = 'false'
+                $__daemonAutostartOverridden = $true
+                $__daemonSocket = [System.Net.Sockets.TcpClient]::new()
+                try {
+                    $__daemonSocket.Connect('127.0.0.1', $__daemonPort)
+                    $__daemonRunning = $true
+                }
+                catch { $__daemonRunning = $false }
+                finally { $__daemonSocket.Dispose() }
+                if (-not $__daemonRunning) {
+                    try {
+                        Start-Process -FilePath (Get-Command atuin -CommandType Application).Source `
+                            -ArgumentList 'daemon', 'start', '--daemonize' -WindowStyle Hidden -ErrorAction Stop
+                    }
+                    catch { Write-Warning 'Could not start the Atuin daemon; history will use the local database.' }
+                }
+            }
+        }
+        $__atuinInit = & atuin init powershell --disable-up-arrow
+        if ($LASTEXITCODE -ne 0) { throw "atuin init failed with exit code $LASTEXITCODE." }
+        $__atuinInit | Out-String | Invoke-Expression
+        if (-not (Get-Command 'Atuin\PSConsoleHostReadLine' -ErrorAction SilentlyContinue)) {
+            throw 'Atuin did not export its reader.'
+        }
+        if ($__coreutilsAvailable) {
+            # Its fallback calls the old CoreUtils reader, recording rewritten lines.
+            $__atuinModule = Get-Module Atuin
+            if (-not $__atuinModule -or -not (& $__atuinModule { $script:hasExpectedReadLineOverload })) {
+                throw 'Atuin cannot read the original line with this PSReadLine version.'
+            }
+            Set-Item Function:\global:PSConsoleHostReadLine -Value $__combinedReader
+        }
+    }
+    catch {
+        if ($__daemonAutostartOverridden) { $env:ATUIN_DAEMON__AUTOSTART = $__originalDaemonAutostart }
+        Remove-Module Atuin -ErrorAction SilentlyContinue
+        Set-Item Function:\global:PSConsoleHostReadLine -Value $__coreutilsReader
+        Write-Warning "Atuin initialization failed: $($_.Exception.Message)"
+    }
+    finally {
+        Remove-Variable __coreutilsReader, __coreutilsSource, __coreutilsReadLine, __atuinReadLine, __combinedReader, __expectedOverload, __atuinInit, __atuinModule, __originalDaemonAutostart, __daemonAutostartOverridden, __daemonEnabled, __daemonAutostart, __daemonPort, __daemonSocket, __daemonRunning -ErrorAction SilentlyContinue
+    }
+}
+Remove-Variable __coreutilsAvailable -ErrorAction SilentlyContinue
