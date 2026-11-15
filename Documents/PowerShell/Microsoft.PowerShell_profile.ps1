@@ -1,5 +1,5 @@
 # Ensure user bin directory on PATH
-$env:PATH = "C:\Users\pabra\bin;$env:PATH"
+$env:PATH = "$(Join-Path $HOME 'bin');$env:PATH"
 
 # Exit profile early if not running interactively
 if (-not ($Host -and $Host.UI -and $Host.UI.RawUI)) { return }
