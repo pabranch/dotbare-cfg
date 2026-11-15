@@ -230,6 +230,11 @@ if _is_command yazi; then
 	alias yz='yazi'
 fi
 
+# Prefer self-managed mise, including when .profile has not run yet.
+if [[ -x "$HOME/.local/bin/mise" ]]; then
+	export PATH="$HOME/.local/bin:$PATH"
+fi
+
 # git-bash chokes on paths with mise activate
 if [[ $platform != "msys" ]] && _is_command mise; then
 	eval "$(mise activate bash)"
